@@ -8,6 +8,8 @@
 .upper_navbar > a{
     font-size: 0.8rem;
     margin:  0.5rem;
+    font-weight: lighter;
+
 }
 
 .lower_navbar{
@@ -15,6 +17,9 @@
     align-items: center;
     justify-content: space-between;
     margin-right: 1.5rem;
+    font-weight: lighter;
+    padding: 0.5rem;
+
 
 
 }

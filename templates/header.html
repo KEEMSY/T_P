@@ -1,28 +1,30 @@
-    <div class="project9_header">
+<div class="project9_header">
 
-        <div class="upper_navbar">
-            <a href="">
-                <span> 고객센터 </span>
-            </a>
+    <div class="upper_navbar">
+        <a href="">
+            <span> 고객센터 </span>
+        </a>
 
-            <a href="">
-                <span> 마이페이지 </span>
-            </a>
-            <a href="">
-                <span> 로그인 </span>
+        <a href="">
+            <span> 마이페이지 </span>
+        </a>
+        <a href="{% url 'userapp:login' %}?next={{ request.path }}">
+            <span> 로그인 </span>
+        </a>
+    </div>
+    <hr>
+    <div class="lower_navbar">
+        <div class="lower_navbar_left">
+            <a href="{% url "userapp:home" %}">
+                <h1 class="logo">LOCO</h1>
             </a>
         </div>
-    <hr>
-        <div class="lower_navbar">
-            <div class="lower_navbar_left">
-                <a href="{% url "userapp:home" %}">
-                    <h1 class="logo">LOCO</h1>
-                </a>
-            </div>
-    <hr>
-            <div class="lower_navbar_right">
+        <hr>
+        <div class="lower_navbar_right">
+            <a href="{% url 'userapp:home' %}">
                 <span> MAIN </span>
-            <a href="{% url 'userapp:login' %}?next={{ request.path }}" class="project9_header_nav">
+            </a>
+            <a href="" class="project9_header_nav">
                 <span> CAREER </span>
             </a>
             <a href="{% url 'userapp:create' %}" class="project9_header_nav">
@@ -31,8 +33,8 @@
             <a href="{% url 'userapp:logout' %}?next={{ request.path }}" class="project9_header_nav">
                 <span> SEARCH </span>
             </a>
-            </div>
-
         </div>
 
     </div>
+
+</div>
