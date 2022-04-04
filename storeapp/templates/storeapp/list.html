@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <div class="head">
+            <form action="{% url 'storeapp:list' %}">
+                <input type="text" placeholder="키워드를 입력하세요">
+            <input type="submit">
+            </form>
+
+        </div>
+        <div class="body">
+            <p>
+                여기에 가게 정보
+            </p>
+        </div>
+    </div>
+    
+
+{#    JS#}
+{#    <script src="{% static 'js/' %}"></script>#}
+{% endblock %}

@@ -1,0 +1,170 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div>
+    <div style="text-align: center; max-width:700px; margin: 4rem auto;">
+{#    로그인한사람의 페이지와 현제 페이지의 사람이 같다면#}
+    {%if target_user == user %}
+        {#    현재 유저가 설정한 프로필이 있다면#}
+        {% if target_user.profile %}
+            {#프로필 사진#}
+            <img src="{{ target_user.profile.image.url }}" alt="" style="height:12rem; width:12rem; border-radius:20rem; margin-bottom:2rem; object-fit: cover;">
+
+            <h4 style="margin-bottom:3rem;">
+            {#프로필메세지#}
+            {{ target_user.profile.message }}
+                <a href="{% url 'profileapp:update' pk=target_user.profile.pk %}">
+                    <h6>
+                        메세지 수정
+                    </h6>
+                </a>
+            </h4>
+        {% else %}
+            <a href="{% url 'profileapp:create' %}">
+            <h5>
+                개인프로필 만들기
+            </h5>
+        </a>
+        {% endif %}
+
+        {#회원정보 수정#}
+        <a href="{% url 'userapp:update' pk=target_user.pk %}">
+            <p>
+                회원정보수정
+           </p>
+        </a>
+        <a href="{% url 'userapp:delete' pk=user.pk %}">
+            <p>
+                회원탈퇴
+            </p>
+        </a>
+
+{#        다른사름의 계정을 볼 때#}
+    {% else %}
+        {% if user.profile %}
+            <img src="{{ user.profile.image.url }}" alt=""
+                 style="height:12rem; width:12rem; border-radius:20rem; margin-bottom:2rem; object-fit: cover;">
+            {{ user.profile.message }}
+        {% else %}
+        <h2>
+            설정된 프로필이 없습니다.
+        </h2>
+        {% endif %}
+    {% endif %}
+    </div>
+</div>
+
+{% endblock %}
+
+
+{#    <div>#}
+{#        <div>#}
+{#            <p>#}
+{#                {{ target_user.date_joined }}#}
+{#            </p>#}
+{#            <h2>#}
+{#                {{ target_user.username }}#}
+{#            </h2>#}
+{#        </div>#}
+{##}
+{#    </div>#}
+{#    <div>#}
+{#        {% if target_user == user %}#}
+{#            <a href="{% url 'userapp:update' pk=user.pk %}">#}
+{#            <p>#}
+{#                회원정보변경#}
+{#            </p>#}
+{#            </a>#}
+{#            <a href="{% url 'userapp:delete' pk=user.pk %}">#}
+{#                <p>#}
+{#                    삭제하기#}
+{#                </p>#}
+{#            </a>#}
+{#            {% if target_user.profile %}#}
+{#                <h2>#}
+{#                    {{ target_user.profile.message }}#}
+{#                </h2>#}
+{#            {% else %}#}
+{#                <a href="{% url 'profileapp:create' %}">#}
+{#                    <h2>#}
+{#                        프로필 만들기#}
+{#                    </h2>#}
+{#                </a>#}
+{#                {% endif %}#}
+{#        {% endif %}#}
+{#    </div>#}
+
+
+
+
+
+
+
+
+
+
+
+
+{#{% extends 'base.html' %}#}
+{##}
+{#{% block content %}#}
+{##}
+{#  <div>#}
+{#    <div style="text-align: center; max-width:700px; margin: 4rem auto;">#}
+{##}
+{##}
+{#      {% if target_user.profile %}#}
+{##}
+{#      <img src="{{ target_user.profile.image.url }}" alt=""#}
+{#           style="height:12rem; width:12rem; border-radius:20rem; margin-bottom:2rem; object-fit: cover;">#}
+{##}
+{#      <h2>#}
+{#        {{ target_user.profile.nickname }}#}
+{#        {%if target_user == user %}#}
+{#          <a class="material-icons"#}
+{#             style="box-shadow: 0 0 4px #ccc; border-radius: 10rem; padding: .4rem;"#}
+{#             href="{% url 'profileapp:update' pk=target_user.profile.pk %}">#}
+{#            edit#}
+{#          </a>#}
+{#        {% endif %}#}
+{#      </h2>#}
+{##}
+{#      <h5 style="margin-bottom:3rem;">#}
+{#        {{ target_user.profile.message }}#}
+{#      </h5>#}
+{#      {% else %}#}
+{#        {%if target_user == user %}#}
+{#        <a href="{% url 'profileapp:create' %}">#}
+{#            <h2>#}
+{#              닉네임 만들기#}
+{#            </h2>#}
+{#          </a>#}
+{#        {% else %}#}
+{#        <h2>#}
+{#          닉네임미설정#}
+{#        </h2>#}
+{#        {% endif %}#}
+{#      {% endif %}#}
+{##}
+{##}
+{##}
+{#      {% if target_user == user %}#}
+{#      <<a class="material-icons"#}
+{#          style="box-shadow: 0 0 4px #ccc; border-radius: 10rem; padding: .4rem;"#}
+{#          href="{% url 'userapp:update' pk=user.pk %}">#}
+{#           settings#}
+{#      </a>#}
+{#      <a class="material-icons"#}
+{#         style="box-shadow: 0 0 4px #fcc; border-radius: 10rem; padding: .4rem;"#}
+{#         href="{% url 'userapp:delete' pk=user.pk %}">#}
+{#          cancel#}
+{#      </a>#}
+{#      {% endif %}#}
+{##}
+{#    </div>#}
+{##}
+{##}
+{#  </div>#}
+{##}
+{#{% endblock %}#}
