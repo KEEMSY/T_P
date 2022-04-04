@@ -1,29 +1,38 @@
     <div class="project9_header">
-        <div>
-            <a href="{% url "userapp:home" %}">
-                <h1 class="project9_logo">Project9</h1>
-            </a>
-        </div>
 
         <div class="upper_navbar">
+            <a href="">
+                <span> 고객센터 </span>
+            </a>
 
-            <span>Home</span>
-
-            {% if not user.is_authenticated %}
+            <a href="">
+                <span> 마이페이지 </span>
+            </a>
+            <a href="">
+                <span> 로그인 </span>
+            </a>
+        </div>
+    <hr>
+        <div class="lower_navbar">
+            <div class="lower_navbar_left">
+                <a href="{% url "userapp:home" %}">
+                    <h1 class="logo">LOCO</h1>
+                </a>
+            </div>
+    <hr>
+            <div class="lower_navbar_right">
+                <span> MAIN </span>
             <a href="{% url 'userapp:login' %}?next={{ request.path }}" class="project9_header_nav">
-                <span>Login</span>
+                <span> CAREER </span>
             </a>
             <a href="{% url 'userapp:create' %}" class="project9_header_nav">
-                <span>SignUp</span>
-            </a>
-            {% else %}
-            <a href="{% url 'userapp:detail' pk=user.pk %}" class="project9_header_nav">
-                <span>MyPage</span>
+                <span> COMMUNITY </span>
             </a>
             <a href="{% url 'userapp:logout' %}?next={{ request.path }}" class="project9_header_nav">
-                <span>logout</span>
+                <span> SEARCH </span>
             </a>
-            {% endif %}
+            </div>
 
         </div>
+
     </div>

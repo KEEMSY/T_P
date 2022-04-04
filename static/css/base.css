@@ -1,13 +1,10 @@
-.project9_logo{
+.logo{
     font-family: 'Poppins', sans-serif;
+    font-weight: bold;
 }
 
 .project9_footer_button{
     font-size: .9rem;
-}
-
-.project9_header{
-    text-align:center; margin:2rem 0;
 }
 
 .project9_footer{
@@ -22,6 +19,9 @@
 
 }
 
+hr{
+    margin : 0.5rem 0;
+}
 
 a {
     color: black;
