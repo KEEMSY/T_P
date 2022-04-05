@@ -14,6 +14,9 @@ ul, li {list-style: none}
 .slidebox div{
     max-width: 100%;
 }
+.slide_list{
+    padding: 0 0;
+}
 
 .slidebox .slide_list{
     white-space: nowrap;
