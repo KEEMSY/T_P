@@ -1,5 +1,5 @@
 .fixed_header{
-
+/*상단에 메뉴바를 고정하고싶음*/
 }
 .upper_navbar{
     display: flex;

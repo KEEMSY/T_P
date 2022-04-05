@@ -1,10 +1,10 @@
 .main_content{
-    text-align: center;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: center;
 }
-
 /* main banner -start-*/
-* {margin: 0; padding: 0; box-sizing: border-box;}
-ul, li {list-style: none}
+
 
 [name='slide'] {display: none}
 .slidebox{
@@ -117,3 +117,66 @@ label.right{
 [id='slide04']:checked ~ .slide_list .slide_items {transform: translateX(-300%); animation: slide04 20s infinite}
 
 /* main banner -end- */
+
+/* main cotent -start*/
+
+/*    main_new_article -start-*/
+
+.main_new_article{
+    margin: 1rem 0;
+}
+.main_post_title span{
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+.main_post_sub_title{
+ margin-bottom: 2rem;
+}
+.main_post_sub_title span{
+    font-size: 1rem;
+    font-weight: lighter;
+    color: #5F5F5F;
+}
+
+.main_posts{
+    display: flex;
+    margin-bottom: 3rem;
+}
+.main_post{
+    margin: 0 1rem;
+}
+.main_post_img{
+    width: 10rem;
+    height: 10rem;
+    border-radius: 0.5rem;
+    background-color: bisque;
+    margin-bottom: 0.5rem;
+}
+
+.main_post_content_title span{
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.main_post_content_content{
+    font-weight: lighter;
+    font-size: 0.8rem;
+
+}
+.main_new_post button{
+    border-radius: 0.5rem;
+    background-color: transparent;
+    /*border-color:*/
+    border-width: 0.5px;
+}
+
+.main_new_post button span{
+    padding: 3rem;
+
+}
+
+
+/*    main_new_article -end-*/
+
+
+/* main cotent -end*/
