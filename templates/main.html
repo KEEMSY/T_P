@@ -1,9 +1,58 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div style="text-align:center;">
+<div>
+    <div class="main_banner">
+        <div class="slidebox">
+            <input type="radio" name="slide" id="slide01" checked>
+            <input type="radio" name="slide" id="slide02" >
+            <input type="radio" name="slide" id="slide03" >
+            <input type="radio" name="slide" id="slide04" >
+            <ul class="slide_list">
+                <li class="slide_items">
+                    <div>
+                        <label for="slide04" class="left"></label>
+                        <label for="slide02" class="right"></label>
+                        <a><div style="width: 100%; height: 30rem; background-color: green"> 배너1 </div></a>
+                    </div>
+                </li>
+                <li class="slide_items">
+                    <div>
+                        <label for="slide01" class="left"></label>
+                        <label for="slide03" class="right"></label>
+                        <a><div style="width: 100%; height: 30rem; background-color: lightskyblue"> 배너2 </div></a>
+                    </div>
+                </li>
+                <li class="slide_items">
+                    <div>
+                        <label for="slide02" class="left"></label>
+                        <label for="slide04" class="right"></label>
+                        <a><div style="width: 100%; height: 30rem; background-color:darkturquoise"> 배너3 </div></a>
+                    </div>
+                </li>
+                <li class="slide_items">
+                    <div>
+                        <label for="slide03" class="left"></label>
+                        <label for="slide01" class="right"></label>
+                        <a><div style="width: 100%; height: 30rem; background-color: darkorange"> 배너4 </div></a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="main_content">
+        <div class="main_new_article">
+            <h4>최신게시글</h4>
+        </div>
 
-    <h4>메인페이지</h4>
+        <div class="main_career">
+            <h4>개발자 채용정보</h4>
+        </div>
+
+        <div class="main_itnews">
+            <h4>it뉴스</h4>
+        </div>
+    </div>
 
 </div>
 

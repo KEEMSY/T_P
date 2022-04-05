@@ -1,8 +1,12 @@
+.fixed_header{
+
+}
 .upper_navbar{
     display: flex;
     justify-content: right;
     margin-right: 1.5rem;
     height: 1.5rem;
+
 }
 
 .upper_navbar > a{

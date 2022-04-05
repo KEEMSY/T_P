@@ -1,0 +1,116 @@
+.main_content{
+    text-align: center;
+}
+
+/* main banner -start-*/
+* {margin: 0; padding: 0; box-sizing: border-box;}
+ul, li {list-style: none}
+
+[name='slide'] {display: none}
+.slidebox{
+    width: 100%;
+    margin: 0 auto;
+}
+.slidebox div{
+    max-width: 100%;
+}
+
+.slidebox .slide_list{
+    white-space: nowrap;
+    font-size: 0;
+    overflow: hidden;
+}
+
+.slidebox .slide_items{
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    width: 100%;
+    transition: all .35s;
+}
+.slidebox .slide_items label{
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 1.5rem;
+    border-radius: 50%;
+    cursor:pointer;
+}
+label.left{
+    left:1rem;
+    background-color: #5F5F5F;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-image: url("/Users/sy/Desktop/temp_project/static/img/right.png");
+    width: 2rem;
+    height: 2rem;
+
+}
+label.right{
+    right:20px;
+    background-color: #5F5F5F;
+    background-position: center center;
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-image: url("/Users/sy/Desktop/temp_project/static/img/right.png");
+
+}
+
+[id="slide01"]:checked ~ .slide_list .slide_items {transform:translateX(0);}
+[id="slide02"]:checked ~ .slide_list .slide_items {transform:translateX(-100%);}
+[id="slide03"]:checked ~ .slide_list .slide_items {transform:translateX(-200%);}
+[id="slide04"]:checked ~ .slide_list .slide_items {transform:translateX(-300%);}
+
+@keyframes slide01 {
+    0% {left:0%}
+    23% {left:0%}
+    25% {left:-100%}
+    48% {left:-100%}
+    50% {left:-200%}
+    73% {left:-200%}
+    75% {left:-300%}
+    98% {left:-300%}
+    100% {left:-0%}
+}
+[id='slide01']:checked ~ .slide_list .slide_items {transform: translateX(0); animation: slide01 20s infinite}
+
+@keyframes slide02 {
+    0% {left:0%}
+    23% {left:0%}
+    25% {left:-100%}
+    48% {left:-100%}
+    50% {left:-200%}
+    73% {left:-200%}
+    75% {left:100%}
+    98% {left:100%}
+    100% {left:-0%}
+}
+[id='slide02']:checked ~ .slide_list .slide_items {transform: translateX(-100%); animation: slide02 20s infinite}
+
+@keyframes slide03 {
+    0% {left:0%}
+    23% {left:0%}
+    25% {left:-100%}
+    48% {left:-100%}
+    50% {left:-200%}
+    73% {left:-200%}
+    75% {left:100%}
+    98% {left:100%}
+    100% {left:-0%}
+}
+[id='slide03']:checked ~ .slide_list .slide_items {transform: translateX(-200%); animation: slide03 20s infinite}
+@keyframes slide04 {
+    0% {left:0%}
+    23% {left:0%}
+    25% {left:-100%}
+    48% {left:-100%}
+    50% {left:-200%}
+    73% {left:-200%}
+    75% {left:100%}
+    98% {left:100%}
+    100% {left:-0%}
+}
+[id='slide04']:checked ~ .slide_list .slide_items {transform: translateX(-300%); animation: slide04 20s infinite}
+
+/* main banner -end- */
