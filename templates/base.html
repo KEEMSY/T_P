@@ -6,17 +6,14 @@
 
 <body>
     {% include 'header.html' %}
-    <div class="notice_bar">
-        <a href="">
-            <span> [공지] 피드백하고 공짜치킨먹자! </span>
-        </a>
+
+    <div style="padding-top: 6rem">
+        {% block content %}
+        {% endblock %}
+
+        <hr>
+        {% include 'footer.html' %}
     </div>
-
-    {% block content %}
-    {% endblock %}
-
-    <hr>
-    {% include 'footer.html' %}
 </body>
 
 
