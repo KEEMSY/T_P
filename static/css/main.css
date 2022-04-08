@@ -1,8 +1,11 @@
 .main_content{
-    padding: 0 2rem;
+    width: 100%;
+}
+.main_content_wrapper{
     display: flex;
     justify-content: center;
 }
+
 /* main banner -start-*/
 
 
@@ -37,22 +40,34 @@
     top: 50%;
     transform: translateY(-50%);
     padding: 1.5rem;
-    border-radius: 50%;
-    cursor:pointer;
+    cursor: pointer;
+    width: 7rem;
+    height: 100%;
 }
-label.left{
-    left:1rem;
+.slidebox .slide_items label:hover{
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 1.5rem;
+    cursor: pointer;
+    width: 7rem;
+    height: 100%;
+    opacity: 50%;
     background-color: #5F5F5F;
+
+}
+
+label.left{
     background-position: center center;
     background-repeat: no-repeat;
     background-image: url("/Users/sy/Desktop/temp_project/static/img/right.png");
-    width: 2rem;
+    width: 7rem;
     height: 2rem;
 
 }
 label.right{
-    right:20px;
-    background-color: #5F5F5F;
+    right:0;
     background-position: center center;
     background-size: 50%;
     background-repeat: no-repeat;
@@ -117,13 +132,38 @@ label.right{
 [id='slide04']:checked ~ .slide_list .slide_items {transform: translateX(-300%); animation: slide04 20s infinite}
 
 /* main banner -end- */
+.main_header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main_header_wrapper{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    margin: 0 2rem;
+}
+
+
+.main_header_content{
+    margin: 0 1rem;
+}
+
+.main_header_img{
+    width: 14vw;
+    height: 7vw;
+    border-radius: 0.5rem;
+}
 
 /* main cotent -start*/
 
 /*    main_new_article -start-*/
 
-.main_new_article{
-    margin: 1rem 0;
+.main_article{
+    margin: 3rem 0;
+
 }
 .main_post_title span{
     font-size: 1.3rem;
@@ -143,11 +183,11 @@ label.right{
     margin-bottom: 3rem;
 }
 .main_post{
-    margin: 0 1rem;
+    margin: 0 1.5rem;
 }
 .main_post_img{
-    width: 10rem;
-    height: 10rem;
+    width: 15vw;
+    height: 15vw;
     border-radius: 0.5rem;
     background-color: bisque;
     margin-bottom: 0.5rem;
@@ -174,9 +214,19 @@ label.right{
     padding: 3rem;
 
 }
-
+.temp_banner{
+    width: 100%;
+    height: 25rem;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    background-color: lemonchiffon;
+}
 
 /*    main_new_article -end-*/
 
 
 /* main cotent -end*/
+
+

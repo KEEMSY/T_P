@@ -1,143 +1,278 @@
+
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block content %}
-<div>
-    <div class="main_banner">
-        <div class="slidebox">
-            <input type="radio" name="slide" id="slide01" checked>
-            <input type="radio" name="slide" id="slide02" >
-            <input type="radio" name="slide" id="slide03" >
-            <input type="radio" name="slide" id="slide04" >
-            <ul class="slide_list">
-                <li class="slide_items">
-                    <div>
-                        <label for="slide04" class="left"></label>
-                        <label for="slide02" class="right"></label>
-                        <a><div style="width: 100%; height: 30rem; background-color: green"> 배너1 </div></a>
-                    </div>
-                </li>
-                <li class="slide_items">
-                    <div>
-                        <label for="slide01" class="left"></label>
-                        <label for="slide03" class="right"></label>
-                        <a><div style="width: 100%; height: 30rem; background-color: lightskyblue"> 배너2 </div></a>
-                    </div>
-                </li>
-                <li class="slide_items">
-                    <div>
-                        <label for="slide02" class="left"></label>
-                        <label for="slide04" class="right"></label>
-                        <a><div style="width: 100%; height: 30rem; background-color:darkturquoise"> 배너3 </div></a>
-                    </div>
-                </li>
-                <li class="slide_items">
-                    <div>
-                        <label for="slide03" class="left"></label>
-                        <label for="slide01" class="right"></label>
-                        <a><div style="width: 100%; height: 30rem; background-color: darkorange"> 배너4 </div></a>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <div class="main_content">
-        <div class="main_new_article">
-            <div class="main_new_post">
-                <div class="main_post_title">
-                    <span>NEW POSTS</span>
-                </div>
-                <div class="main_post_sub_title">
-                    <span>최신 게시글</span>
-               </div>
-                <div class="main_posts">
-                    <div class="main_post">
-                        <a href="">
-                            <div class="main_post_img">
-
-                            </div>
-                            <div class="main_post_content">
-                                <div class="main_post_content_title">
-                                    <span>임시 제목</span>
-
-                                </div>
-                                <div class="main_post_content_content">
-                                    <span>임시 내용</span>
-
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="main_post">
-                        <a href="">
-                            <div class="main_post_img">
-
-                            </div>
-                            <div class="main_post_content">
-                                <div class="main_post_content_title">
-                                    <span>임시 제목</span>
-
-                                </div>
-                                <div class="main_post_content_content">
-                                    <span>임시 내용</span>
-
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="main_post">
-                        <a href="">
-                            <div class="main_post_img">
-
-                            </div>
-                            <div class="main_post_content">
-                                <div class="main_post_content_title">
-                                    <span>임시 제목</span>
-
-                                </div>
-                                <div class="main_post_content_content">
-                                    <span>임시 내용</span>
-
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="main_post">
-                        <a href="">
-                            <div class="main_post_img">
-
-                            </div>
-                            <div class="main_post_content">
-                                <div class="main_post_content_title">
-                                    <span>임시 제목</span>
-
-                                </div>
-                                <div class="main_post_content_content">
-                                    <span>임시 내용</span>
-
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div style="text-align: center">
-                    <button>
-                        <span>더보기</span>
-                    </button>
-                </div>
+    <div>
+        <div class="main_banner">
+            <div class="slidebox">
+                <input type="radio" name="slide" id="slide01" checked>
+                <input type="radio" name="slide" id="slide02" >
+                <input type="radio" name="slide" id="slide03" >
+                <input type="radio" name="slide" id="slide04" >
+                <ul class="slide_list">
+                    <li class="slide_items">
+                        <div>
+                            <label for="slide04" class="left"></label>
+                            <label for="slide02" class="right"></label>
+                            <a><div style="width: 100%; height: 30rem; background-color: green"> 공지사항 </div></a>
+                        </div>
+                    </li>
+                    <li class="slide_items">
+                        <div>
+                            <label for="slide01" class="left"></label>
+                            <label for="slide03" class="right"></label>
+                            <a><div style="width: 100%; height: 30rem; background-color: lightskyblue"> 알리미:1일1커밋 </div></a>
+                        </div>
+                    </li>
+                    <li class="slide_items">
+                        <div>
+                            <label for="slide02" class="left"></label>
+                            <label for="slide04" class="right"></label>
+                            <a><div style="width: 100%; height: 30rem; background-color:darkturquoise"> 알리미:1일 1문제 </div></a>
+                        </div>
+                    </li>
+                    <li class="slide_items">
+                        <div>
+                            <label for="slide03" class="left"></label>
+                            <label for="slide01" class="right"></label>
+                            <a><div style="width: 100%; height: 30rem; background-color: darkorange"> 배너4 </div></a>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
+        <div class="main_content">
+            <div class="main_header">
+                <div class="main_header_wrapper">
+                    <div class="main_header_content">
+                        <div class="main_header_img" style="background-color: paleturquoise">
 
-{#        <div class="main_career">#}
-{#            <h4>개발자 채용정보</h4>#}
-{#        </div>#}
-{##}
-{#        <div class="main_itnews">#}
-{#            <h4>it뉴스</h4>#}
-{#        </div>#}
-    </div>
-    <div class="">
+                        </div>
+                        <div class="main_header_title">
+                            <span>미해결문제</span>
+                        </div>
+                    </div>
+                    <div class="main_header_content">
+                        <div class="main_header_img" style="background-color: mediumpurple">
 
+                        </div>
+                        <div class="main_header_title">
+                            <span>해결된문제</span>
+                        </div>
+                    </div>
+                    <div class="main_header_content">
+                        <div class="main_header_img" style="background-color: lavender">
+
+                        </div>
+                        <div class="main_header_title">
+                            <span>채용공고</span>
+                        </div>
+                    </div>
+                    <div class="main_header_content">
+                        <div class="main_header_img" style="background-color: black">
+
+                        </div>
+                        <div class="main_header_title">
+                            <span>랭킹</span>
+                        </div>
+                    </div>
+                    <div class="main_header_content">
+                        <div class="main_header_img" style="background-color: khaki">
+
+                        </div>
+                        <div class="main_header_title">
+                            <span>공지사항</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="main_article">
+                <div class="main_content_wrapper">
+                    <div class="main_new_post">
+                        <div class="main_post_title">
+                            <span>HOT POSTS</span>
+                        </div>
+                        <div class="main_post_sub_title">
+                            <span>인기 게시글</span>
+                        </div>
+                        <div class="main_posts">
+                            <div class="main_post">
+                                <a href="">
+                                    <div class="main_post_img">
+
+                                    </div>
+                                    <div class="main_post_content">
+                                        <div class="main_post_content_title">
+                                            <span>임시 제목</span>
+
+                                        </div>
+                                        <div class="main_post_content_content">
+                                            <span>임시 내용</span>
+
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="main_post">
+                                <a href="">
+                                    <div class="main_post_img">
+
+                                    </div>
+                                    <div class="main_post_content">
+                                        <div class="main_post_content_title">
+                                            <span>임시 제목</span>
+
+                                        </div>
+                                        <div class="main_post_content_content">
+                                            <span>임시 내용</span>
+
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="main_post">
+                                <a href="">
+                                    <div class="main_post_img">
+
+                                    </div>
+                                    <div class="main_post_content">
+                                        <div class="main_post_content_title">
+                                            <span>임시 제목</span>
+
+                                        </div>
+                                        <div class="main_post_content_content">
+                                            <span>임시 내용</span>
+
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="main_post">
+                                <a href="">
+                                    <div class="main_post_img">
+
+                                    </div>
+                                    <div class="main_post_content">
+                                        <div class="main_post_content_title">
+                                            <span>임시 제목</span>
+
+                                        </div>
+                                        <div class="main_post_content_content">
+                                            <span>임시 내용</span>
+
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div style="text-align: center">
+                            <button>
+                                <span>더보기</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="temp_banner">
+                {#            문제풀이 사이트로 가는 배너 공간#}
+                <h2>프로그래머스</h2>
+                <h2>백준 </h2>
+            </div>
+
+            <div class="main_article">
+                <div class="main_content_wrapper">
+                    <div class="main_new_post">
+                        <div class="main_post_title">
+                            <span>NEW POSTS</span>
+                        </div>
+                        <div class="main_post_sub_title">
+                            <span>최신 게시글</span>
+                        </div>
+                        <div class="main_posts">
+                            <div class="main_post">
+                                <a href="">
+                                    <div class="main_post_img">
+
+                                    </div>
+                                    <div class="main_post_content">
+                                        <div class="main_post_content_title">
+                                            <span>임시 제목</span>
+
+                                        </div>
+                                        <div class="main_post_content_content">
+                                            <span>임시 내용</span>
+
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="main_post">
+                                <a href="">
+                                    <div class="main_post_img">
+
+                                    </div>
+                                    <div class="main_post_content">
+                                        <div class="main_post_content_title">
+                                            <span>임시 제목</span>
+
+                                        </div>
+                                        <div class="main_post_content_content">
+                                            <span>임시 내용</span>
+
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="main_post">
+                                <a href="">
+                                    <div class="main_post_img">
+
+                                    </div>
+                                    <div class="main_post_content">
+                                        <div class="main_post_content_title">
+                                            <span>임시 제목</span>
+
+                                        </div>
+                                        <div class="main_post_content_content">
+                                            <span>임시 내용</span>
+
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="main_post">
+                                <a href="">
+                                    <div class="main_post_img">
+
+                                    </div>
+                                    <div class="main_post_content">
+                                        <div class="main_post_content_title">
+                                            <span>임시 제목</span>
+
+                                        </div>
+                                        <div class="main_post_content_content">
+                                            <span>임시 내용</span>
+
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div style="text-align: center">
+                            <button>
+                                <span>더보기</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
     </div>
-</div>
 
 {% endblock %}

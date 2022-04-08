@@ -1,36 +1,38 @@
 <div class="fixed_header">
-    <div class="upper_navbar">
-        <a href="">
-            <span> 고객센터 </span>
-        </a>
-        <a href="">
-            <span> 마이페이지 </span>
-        </a>
-        <a href="{% url 'userapp:login' %}?next={{ request.path }}">
-            <span> 로그인 </span>
-        </a>
-    </div>
-    <hr>
-    <div class="lower_navbar">
-        <div class="lower_navbar_left">
-            <a href="{% url "userapp:home" %}">
-                <h1 class="logo">TP</h1>
+    <div style="display: block" >
+        <div class="upper_navbar">
+            <a href="">
+                <span> 고객센터 </span>
+            </a>
+            <a href="">
+                <span> 마이페이지 </span>
+            </a>
+            <a href="{% url 'userapp:login' %}?next={{ request.path }}">
+                <span> 로그인 </span>
             </a>
         </div>
         <hr>
-        <div class="lower_navbar_right">
-            <a href="{% url 'userapp:home' %}">
-                <span> MAIN </span>
-            </a>
-            <a href="" class="project9_header_nav">
-                <span> CAREER </span>
-            </a>
-            <a href="{% url 'userapp:create' %}" class="project9_header_nav">
-                <span> COMMUNITY </span>
-            </a>
-            <a href="{% url 'userapp:logout' %}?next={{ request.path }}" class="project9_header_nav">
-                <span> SEARCH </span>
-            </a>
+        <div class="lower_navbar">
+            <div class="lower_navbar_left">
+                <a href="{% url "userapp:home" %}">
+                    <h1 class="logo">TemProject</h1>
+                </a>
+            </div>
+            <hr>
+            <div class="lower_navbar_right">
+                <a href="{% url 'userapp:home' %}">
+                    <span> MAIN </span>
+                </a>
+                <a href="" class="project9_header_nav">
+                    <span> CAREER </span>
+                </a>
+                <a href="{% url 'userapp:create' %}" class="project9_header_nav">
+                    <span> COMMUNITY </span>
+                </a>
+                <a href="{% url 'userapp:logout' %}?next={{ request.path }}" class="project9_header_nav">
+                    <span> SEARCH </span>
+                </a>
+            </div>
         </div>
     </div>
 </div>

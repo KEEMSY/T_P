@@ -32,15 +32,3 @@
     margin-left: 2rem;
 }
 
-.notice_bar{
-    width: 100%;
-    background-color: black;
-    text-align: center;
-}
-
-.notice_bar > a{
-    color: white;
-    font-weight: lighter;
-    font-size: 0.8rem;
-    padding: 0.8rem;
-}
