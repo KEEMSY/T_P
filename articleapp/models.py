@@ -5,7 +5,16 @@ from userapp.models import User, Developer, Supporter, Planner
 CATEGORY_CHOICE = [('project', 'project'), ('question', 'question')]
 
 
-# Create your models here.
+class Project(models.Model):
+    name = models.CharField( default='', max_length=100, null=False)
+    due_date = models.CharField(default='', max_length=100, null=False)
+    stack = models.CharField(default='', max_length=100, null=False)
+    desc = models.CharField(default='', max_length=100, null=False)
+    crew = models.ForeignKey(User, related_name='user_crew', on_delete=models.SET_NULL, null=True)
+    leader = models.ForeignKey(User, related_name='user_leader', on_delete=models.CASCADE)
+    support = models.ManyToManyField(User, related_name='user_support')
+
+
 class Article(models.Model):
     title = models.CharField(max_length=1000)
     content = models.CharField(max_length=1000)
@@ -17,13 +26,5 @@ class Article(models.Model):
 
 
 class ProjectArticle(Article):
-    writer = models.ForeignKey(Developer, related_name='writer', on_delete=models.CASCADE)
-    project_name = models.CharField(max_length=100)
-    project_desc = models.CharField(max_length=100)
-    project_skill = models.CharField(max_length=100)
-
-
-class DevlopTeam(models.Model):
-    project = models.ForeignKey(ProjectArticle, related_name='project', on_delete=models.CASCADE)
-    crew = models.ForeignKey(Developer, related_name='crew', on_delete=models.CASCADE)
-    leader = models.ForeignKey(Developer, related_name='leader', on_delete=models.CASCADE)
+    writer = models.ForeignKey(Developer, related_name='user_writer', on_delete=models.CASCADE)
+    project = models.ForeignKey(Project, related_name='user_project', on_delete=models.CASCADE)
