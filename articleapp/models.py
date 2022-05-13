@@ -5,16 +5,6 @@ from userapp.models import User, Developer, Supporter, Planner
 CATEGORY_CHOICE = [('project', 'project'), ('question', 'question')]
 
 
-class Project(models.Model):
-    name = models.CharField( default='', max_length=100, null=False)
-    due_date = models.CharField(default='', max_length=100, null=False)
-    stack = models.CharField(default='', max_length=100, null=False)
-    desc = models.CharField(default='', max_length=100, null=False)
-    crew = models.ForeignKey(User, related_name='user_crew', on_delete=models.SET_NULL, null=True)
-    leader = models.ForeignKey(User, related_name='user_leader', on_delete=models.CASCADE)
-    support = models.ManyToManyField(User, related_name='user_support')
-
-
 class Article(models.Model):
     title = models.CharField(max_length=1000)
     content = models.CharField(max_length=1000)
@@ -27,4 +17,11 @@ class Article(models.Model):
 
 class ProjectArticle(Article):
     writer = models.ForeignKey(Developer, related_name='user_writer', on_delete=models.CASCADE)
-    project = models.ForeignKey(Project, related_name='user_project', on_delete=models.CASCADE)
+    project_name = models.CharField(default='', max_length=100, null=False)
+    project_due_date = models.CharField(default='', max_length=100, null=False)
+    project_stack = models.CharField(default='', max_length=100, null=False)
+    project_desc = models.CharField(default='', max_length=100, null=False)
+    project_crew = models.ForeignKey(User, related_name='user_crew', on_delete=models.SET_NULL, null=True)
+    project_leader = models.ForeignKey(User, related_name='user_leader', on_delete=models.CASCADE)
+    project_support = models.ManyToManyField(User, related_name='user_support')
+    project_satus = models.BooleanField(default=True)
