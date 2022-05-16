@@ -1,5 +1,5 @@
 """
-ASGI config for temp_project project.
+ASGI config for temp_project service.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
