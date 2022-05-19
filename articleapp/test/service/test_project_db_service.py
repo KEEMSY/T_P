@@ -175,5 +175,26 @@ class TestProjectDBService(TestCase):
         self.assertEqual(result2, 'success')
         self.assertEqual(len(all_article_list), 2)
 
+        # delete_article
+    def test_delete_article_right(self):
+        # Given
+        developer = self.make_right_developer()
+        data = self.projectArticleRightData
+        data['project_name'] = 'check'
+        data['writer'] = developer
+        result = make_article(data=data)
+
+        # When
+        deleted_article = delete_article(pk=1)
+
+        # Then
+        self.assertEqual(result, 'success')
+        check_article_exist = DBProjectArticle.objects.filter(pk=1).exists()
+        self.assertEquals(check_article_exist, False)
+
+    def test_delete_article_what_if_article_does_not_exist(self):
+        pass
+
+
 
 
