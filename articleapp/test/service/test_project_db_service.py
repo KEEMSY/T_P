@@ -1,6 +1,8 @@
+from django.core.exceptions import ObjectDoesNotExist
+from django.db.models import Model
 from django.test.testcases import TestCase
 from articleapp.service.project_db_service import make_article, find_all_article,delete_article, put_article
-from articleapp.models import DBProjectArticle
+from articleapp.models import DBProjectArticle, DBArticle
 from userapp.models import DBUser, DBDeveloper
 import random
 
@@ -58,7 +60,7 @@ class TestProjectDBService(TestCase):
         result = make_article(data=wrong_data)
 
         # Then
-        self.assertEqual(result, "fail")
+        self.assertFalse(result)
 
     def test_make_article_data_is_necessary_data(self):
         # Given
@@ -74,7 +76,7 @@ class TestProjectDBService(TestCase):
         result = make_article(data=wrong_data)
 
         # Then
-        self.assertEqual(result, "fail")
+        self.assertTrue(result)
 
     def test_make_article_data_type_is_dict_type(self):
         # Given
@@ -85,7 +87,7 @@ class TestProjectDBService(TestCase):
         result = make_article(data)
 
         # Then
-        self.assertEqual(result, "fail")
+        self.assertFalse(result)
 
     def test_make_article_project_already_exist(self):
         # Given
@@ -98,11 +100,11 @@ class TestProjectDBService(TestCase):
         developer2 = self.make_right_developer()
         data2 = self.projectArticleRightData
         data2['writer'] = developer2
-        reuslt2 = make_article(data=data2)
+        result2 = make_article(data=data2)
 
         # Then
-        self.assertEqual(result1, "success")
-        self.assertEqual(reuslt2, "fail")
+        self.assertTrue(result1)
+        self.assertFalse(result2)
 
     def test_make_article_article_is_already_exist(self):
         # Given
@@ -115,8 +117,8 @@ class TestProjectDBService(TestCase):
         result2 = make_article(data=data)
 
         # Then
-        self.assertEqual(result1, "success")
-        self.assertEqual(result2, "fail")
+        self.assertTrue(result1)
+        self.assertFalse(result2)
 
     def test_make_article_user_is_exist(self):
         # Given
@@ -126,7 +128,7 @@ class TestProjectDBService(TestCase):
         result = make_article(data=data)
 
         # Then
-        self.assertEqual(result, "fail")
+        self.assertFalse(result)
 
     def test_make_article_category_of_data_is_not_in_category_choice(self):
         # Given
@@ -139,7 +141,7 @@ class TestProjectDBService(TestCase):
         result = make_article(data=data)
 
         # Then
-        self.assertEqual(result, 'fail')
+        self.assertFalse(result)
 
 
     # find_all_article() 관련
@@ -171,8 +173,8 @@ class TestProjectDBService(TestCase):
         all_article_list = find_all_article()
 
         # Then
-        self.assertEqual(result, 'success')
-        self.assertEqual(result2, 'success')
+        self.assertTrue(result)
+        self.assertTrue(result2)
         self.assertEqual(len(all_article_list), 2)
 
         # delete_article
@@ -188,13 +190,31 @@ class TestProjectDBService(TestCase):
         deleted_article = delete_article(pk=1)
 
         # Then
-        self.assertEqual(result, 'success')
+        self.assertTrue(result)
         check_article_exist = DBProjectArticle.objects.filter(pk=1).exists()
         self.assertEquals(check_article_exist, False)
 
-    def test_delete_article_what_if_article_does_not_exist(self):
-        pass
+    def test_delete_article_what_if_article_does_not_exist(self) :
+        # Given
+        pk = 12312321
+        # When
+        with self.assertRaises(ObjectDoesNotExist):
+            article = delete_article(pk=pk)
 
+    def test_delete_article_then_user_is_delete(self):
+        # Given
+        developer = self.make_right_developer()
+        data = self.projectArticleRightData
+        data['writer'] = developer
+        result = make_article(data=data)
 
+        # When
+        article_result = delete_article(pk=1)
+        user_result = DBDeveloper.objects.get(pk=1)
+
+        # Then
+        self.assertTrue(result)
+        self.assertTrue(article_result)
+        self.assertEqual(user_result, developer)
 
 
