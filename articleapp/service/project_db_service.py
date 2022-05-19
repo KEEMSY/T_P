@@ -6,8 +6,12 @@ from articleapp.serializer import ProjectArticleSerializer
 def make_article(data):
     serializer = ProjectArticleSerializer(data=data)
     if serializer.is_valid():
-        serializer.save()
-        return "success"
+        check = DBProjectArticle.objects.filter(project_name=data['project_name']).exists()
+        if check is False:
+            serializer.save()
+            return "success"
+        else:
+            return "fail"
     else:
         print(serializer.errors)
         return "fail"
