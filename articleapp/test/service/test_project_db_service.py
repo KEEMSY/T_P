@@ -9,7 +9,7 @@ import random
 
 class TestProjectDBService(TestCase):
     def __init__(self, *args, **kwargs):
-        super(TestProjectDBService, self).__init__( *args, **kwargs)
+        super(TestProjectDBService, self).__init__(*args, **kwargs)
         self.projectArticleRightData = {
             'title': 'test_title',
             'content': 'test_content',
@@ -42,6 +42,7 @@ class TestProjectDBService(TestCase):
         developer = self.make_right_developer()
         data = self.projectArticleRightData
         data['writer'] = developer
+        print(data)
 
         # When
         result = make_article(data=data)
@@ -76,7 +77,7 @@ class TestProjectDBService(TestCase):
         result = make_article(data=wrong_data)
 
         # Then
-        self.assertTrue(result)
+        self.assertFalse(result)
 
     def test_make_article_data_type_is_dict_type(self):
         # Given

@@ -24,4 +24,4 @@ class DBProjectArticle(DBArticle):
     project_crew = models.ForeignKey(DBUser, related_name='user_crew', on_delete=models.SET_NULL, null=True)
     project_leader = models.ForeignKey(DBUser, related_name='user_leader', on_delete=models.CASCADE, null=True)
     project_support = models.ForeignKey(DBUser, related_name='user_support', null=True, on_delete=models.CASCADE)
-    project_status = models.BooleanField(default=True, null=True)
+    project_status = models.BooleanField(default=True)

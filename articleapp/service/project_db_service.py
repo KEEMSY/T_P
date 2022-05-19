@@ -9,12 +9,12 @@ def make_article(data):
         check = DBProjectArticle.objects.filter(project_name=data['project_name']).exists()
         if check is False:
             serializer.save()
-            return "success"
+            return True
         else:
-            return "fail"
+            return False
     else:
         print(serializer.errors)
-        return "fail"
+        return False
 
 
 # 기사 찾기 - 모든 리스트

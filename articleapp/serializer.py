@@ -7,4 +7,4 @@ class ProjectArticleSerializer(serializers.ModelSerializer):
         model = DBProjectArticle
         fields = ['id','title', 'content', 'category', 'contact', 'like', 'create_at', 'update_at', 'writer',
                   'project_name','project_due_date', 'project_stack', 'project_desc', 'project_crew',
-                  'project_leader', 'project_support', 'project_satus']
+                  'project_leader', 'project_support', 'project_status']
