@@ -1,5 +1,5 @@
 from django.test.testcases import TestCase
-from articleapp.service.project_db_service import make_article
+from articleapp.service.project_db_service import make_article, find_all_article,delete_article, put_article
 from articleapp.models import DBProjectArticle
 from userapp.models import DBUser, DBDeveloper
 import random
@@ -140,4 +140,40 @@ class TestProjectDBService(TestCase):
 
         # Then
         self.assertEqual(result, 'fail')
+
+
+    # find_all_article() 관련
+
+    def test_find_all_article(self):
+        # Given
+        developer = self.make_right_developer()
+        data = self.projectArticleRightData
+        data['writer'] = developer
+        result = make_article(data=data)
+
+        developer2 = self.make_right_developer()
+
+        while True:
+            developer2 = self.make_right_developer()
+            if developer2 != developer:
+                break
+
+        data2 = self.projectArticleRightData
+        data['writer'] = developer2
+        data['project_name'] = 'test2_project'
+        data['project_desc'] = 'test2_project_desc'
+        data['project_due_date'] = '2022-20220'
+        data['project_stack'] = 'test2_project_stack'
+        data['project_desc'] = 'project_desc'
+        result2 = make_article(data2)
+
+        # When
+        all_article_list = find_all_article()
+
+        # Then
+        self.assertEqual(result, 'success')
+        self.assertEqual(result2, 'success')
+        self.assertEqual(len(all_article_list), 2)
+
+
 
