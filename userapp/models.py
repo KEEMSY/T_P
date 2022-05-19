@@ -9,7 +9,7 @@ SUPPORT_CHOICES = [('서버 개발비', 'server_pay'), ('AWS 크레딧', 'aws_cr
 
 
 # Create your models here.
-class User(models.Model):
+class DBUser(models.Model):
     email = models.EmailField(null=False)
     password = models.CharField(max_length=1000, null=False)
     nickname = models.CharField(max_length=100, null=False)
@@ -17,15 +17,15 @@ class User(models.Model):
     bio = models.CharField(max_length=1000)
 
 
-class Developer(User):
+class DBDeveloper(DBUser):
     language = models.CharField(choices=LANGUAGE_CHOICES, default='python', max_length=100)
     skill = models.CharField(choices=SKILLS, default='python', max_length=100)
 
 
-class Supporter(User):
+class DBSupporter(DBUser):
     can_support = models.CharField(choices=SUPPORT_CHOICES, default='None', max_length=100, null=True)
     will_support = models.CharField(choices=SUPPORT_CHOICES, default='None', max_length=100, null=True)
 
 
-class Planner(User):
-    item = models.CharField( default='None', max_length=100, null=False)
+class DBPlanner(DBUser):
+    item = models.CharField(default='None', max_length=100, null=False)
