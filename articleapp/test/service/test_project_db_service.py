@@ -218,4 +218,37 @@ class TestProjectDBService(TestCase):
         self.assertTrue(article_result)
         self.assertEqual(user_result, developer)
 
+    # Put_article Test
+    def test_put_article_right_update(self):
+        # Given
+        developer = self.make_right_developer()
+        data = self.projectArticleRightData
+        data['writer'] = developer
+        result = make_article(data=data)
 
+        update_data = self.projectArticleRightData
+
+        update_data['project_name'] = 'update_value'
+        update_data['writer'] = developer
+
+        # When
+        update_result = put_article(pk=1, data=update_data)
+
+        # Then
+        self.assertTrue(result)
+        self.assertTrue(update_result)
+        self.assertEqual('update_value', DBProjectArticle.objects.get(pk=1).project_name)
+
+    def test_put_article_data_type_is_dictionary(self):
+        # Given
+        developer = self.make_right_developer()
+        data = self.projectArticleRightData
+        data['writer'] = developer
+        result = make_article(data=data)
+
+        update_data = 'update_value'
+
+
+        # When Then
+        with self.assertRaises(TypeError):
+            update_result = put_article(pk=1, data=update_data)

@@ -1,5 +1,6 @@
 from articleapp.models import DBProjectArticle
 from articleapp.serializer import ProjectArticleSerializer
+from typing import Dict
 
 
 # 기사 만들기
@@ -32,6 +33,13 @@ def delete_article(pk):
 
 
 # 기사 수정
-def put_article(data):
-    article = ProjectArticleSerializer(data=data)
-    return article.data
+def put_article(pk, data):
+    if type(data) is not dict:
+        raise TypeError
+    article = DBProjectArticle.objects.get(pk=pk)
+    serializer = ProjectArticleSerializer(article, data=data)
+    if serializer.is_valid():
+        serializer.save()
+        return True
+    else:
+        return False
