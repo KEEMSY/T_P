@@ -1,7 +1,7 @@
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Model
 from django.test.testcases import TestCase
-from articleapp.service.project_db_service import make_article, find_all_article,delete_article, put_article
+from articleapp.service.project_db_service import make_article, find_all_article,delete_article, put_article, find_article_one_by_pk
 from articleapp.models import DBProjectArticle, DBArticle
 from userapp.models import DBUser, DBDeveloper
 import random
@@ -144,9 +144,7 @@ class TestProjectDBService(TestCase):
         # Then
         self.assertFalse(result)
 
-
     # find_all_article() 관련
-
     def test_find_all_article(self):
         # Given
         developer = self.make_right_developer()
@@ -248,7 +246,20 @@ class TestProjectDBService(TestCase):
 
         update_data = 'update_value'
 
-
         # When Then
         with self.assertRaises(TypeError):
             update_result = put_article(pk=1, data=update_data)
+
+    # find_article_pk
+    def test_find_article_by_pk(self):
+        # Given
+        developer = self.make_right_developer()
+        data = self.projectArticleRightData
+        data['writer'] = developer
+        result = make_article(data=data)
+        # When
+        find_result = find_article_one_by_pk(pk=1)
+
+        # Then
+        self.assertTrue(find_result)
+        self.assertTrue(result)

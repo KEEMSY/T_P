@@ -43,3 +43,7 @@ def put_article(pk, data):
         return True
     else:
         return False
+
+
+def find_article_one_by_pk(pk):
+    pass
