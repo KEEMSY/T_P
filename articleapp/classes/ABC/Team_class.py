@@ -1,4 +1,4 @@
-from abc import ABC
+from abc import ABC, abstractmethod
 
 
 class Team(ABC):
@@ -7,11 +7,14 @@ class Team(ABC):
         self.__leader = None
         self.__supporterList = []
 
+    @abstractmethod
     def make_team(self):
         pass
 
+    @abstractmethod
     def append_team(self):
         pass
 
+    @abstractmethod
     def delete_team(self):
         pass

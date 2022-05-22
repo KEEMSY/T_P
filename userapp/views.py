@@ -17,7 +17,7 @@ from userapp.forms import UserUpdateForm
 
 has_ownership = [login_required, account_ownership_required]
 #
-# class tempView(View):
+# classes tempView(View):
 #     params = json.loads(request.body.decode('utf-8'))
 #     id = params['id']
 #     password = params['password']

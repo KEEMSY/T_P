@@ -1,8 +1,5 @@
-from pyexpat import model
-
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Model
-
 from articleapp.models import DBProjectArticle
 from articleapp.serializer import ProjectArticleSerializer
 from typing import Dict

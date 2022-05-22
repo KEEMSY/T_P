@@ -1,4 +1,4 @@
-from abc import ABC
+from abc import ABC, abstractmethod
 
 
 class Category(ABC):
@@ -7,18 +7,23 @@ class Category(ABC):
         self.__searchList = None
         self.__articleCnt = None
 
+    @abstractmethod
     def make(self):
         pass
 
+    @abstractmethod
     def search_title(self):
         pass
 
-    def search_poject(self):
+    @abstractmethod
+    def search_project(self):
         pass
 
+    @abstractmethod
     def search_writer(self):
         pass
 
+    @abstractmethod
     def pagination(self):
         pass
 

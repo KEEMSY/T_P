@@ -13,13 +13,21 @@ class Project(ABC):
         self.__desc = None
         self.__tool = None
 
+    @abstractmethod
     def make_project(self, title, leader, stack, due_date, desc, tool):
-        self.set_title(title)
-        self.set_leader(leader)
-        self.set_stack(stack)
-        self.set_due_date(due_date)
-        self.set_desc(desc)
-        self.set_tool(tool)
+        pass
+
+    @abstractmethod
+    def delete_project(self):
+        pass
+
+    @abstractmethod
+    def update_project(self):
+        pass
+
+    @abstractmethod
+    def see_now(self):
+        pass
 
     # Getter 설정
 

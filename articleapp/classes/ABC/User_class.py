@@ -1,4 +1,4 @@
-from abc import ABC
+from abc import ABC, abstractmethod
 
 
 class User(ABC):
@@ -9,9 +9,11 @@ class User(ABC):
         self.__bio = None
         self.__password = None
 
+    @abstractmethod
     def change_info(self, data):
         pass
 
+    @abstractmethod
     def change_password(self, data):
         pass
 
