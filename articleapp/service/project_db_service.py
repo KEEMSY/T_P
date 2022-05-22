@@ -1,3 +1,8 @@
+from pyexpat import model
+
+from django.core.exceptions import ObjectDoesNotExist
+from django.db.models import Model
+
 from articleapp.models import DBProjectArticle
 from articleapp.serializer import ProjectArticleSerializer
 from typing import Dict
@@ -46,4 +51,8 @@ def put_article(pk, data):
 
 
 def find_article_one_by_pk(pk):
-    pass
+    try:
+        article = DBProjectArticle.objects.get(pk=pk)
+        return article
+    except ObjectDoesNotExist:
+        return None

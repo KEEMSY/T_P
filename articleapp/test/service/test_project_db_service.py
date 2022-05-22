@@ -257,9 +257,20 @@ class TestProjectDBService(TestCase):
         data = self.projectArticleRightData
         data['writer'] = developer
         result = make_article(data=data)
+        real_article = DBProjectArticle.objects.get(pk=1)
         # When
-        find_result = find_article_one_by_pk(pk=1)
+        expect_result = find_article_one_by_pk(pk=1)
 
         # Then
-        self.assertTrue(find_result)
+        self.assertEqual(expect_result, real_article)
         self.assertTrue(result)
+
+    def test_find_article_by_pk_has_no_pk(self):
+        # Given
+
+        # When
+        expect_result = find_article_one_by_pk(pk=9999)
+
+        # Then
+        self.assertIsNone(expect_result)
+
