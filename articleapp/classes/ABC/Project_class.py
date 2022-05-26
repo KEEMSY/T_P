@@ -5,13 +5,13 @@ from abc import ABC, abstractmethod
 
 class Project(ABC):
     def __init__(self):
-        self.__leader = None
-        self.__team = None
-        self.__stack = None
-        self.__title = None
-        self.__due_date = None
-        self.__desc = None
-        self.__tool = None
+        self._leader = None
+        self._team = None
+        self._stack = None
+        self._title = None
+        self._due_date = None
+        self._desc = None
+        self._tool = None
 
     @abstractmethod
     def make_project(self, title, leader, stack, due_date, desc, tool):
@@ -32,48 +32,48 @@ class Project(ABC):
     # Getter 설정
 
     def get_leader(self):
-        return self.__leader
+        return self._leader
 
     def get_team(self):
-        return self.__team
+        return self._team
 
     def get_stack(self):
-        return self.__stack
+        return self._stack
 
     def get_title(self):
-        return self.__title
+        return self._title
 
     def get_due_date(self):
-        return self.__due_date
+        return self._due_date
 
     def get_desc(self):
-        return self.__desc
+        return self._desc
 
     def get_tool(self):
-        return self.__tool
+        return self._tool
 
     # Setter 설정
 
     def set_leader(self, data):
-        self.__leader = data
+        self._leader = data
 
     def set_team(self, data):
-        self.__team = data
+        self._team = data
 
     def set_stack(self, data):
-        self.__stack = data
+        self._stack = data
 
     def set_title(self, data):
-        self.__title = data
+        self._title = data
 
     def set_due_date(self, data):
-        self.__due_date = data
+        self._due_date = data
 
     def set_desc(self, data):
-        self.__desc = data
+        self._desc = data
 
     def set_tool(self, data):
-        self.__tool = data
+        self._tool = data
 
 
 

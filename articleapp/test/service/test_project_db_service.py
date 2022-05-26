@@ -25,7 +25,8 @@ class TestProjectDBService(TestCase):
     # Given
     # When
     # Then
-    def make_right_developer(self):
+    @staticmethod
+    def make_right_developer():
         email_list = ["zhqmfkv@naver.com", "aaa@naver.com", "ba@naver.com" ,"adfasdfdasf@naver.com"]
         password_list = ["423412", "23423432", "234234234"]
         nickname_list = ["423412", "23423432", "234234234"]

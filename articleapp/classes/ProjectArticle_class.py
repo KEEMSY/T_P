@@ -1,4 +1,4 @@
-from ABC import Article
+from .ABC import Article
 
 
 # ProjectArticle

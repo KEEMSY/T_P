@@ -5,11 +5,11 @@ from abc import ABC, abstractmethod
 
 class Article(ABC):
     def __init__(self):
-        self.__pk = None
-        self.__title = None
-        self.__writer = None
-        self.__comment = None
-        self.__project = None
+        self._pk = None
+        self._title = None
+        self._writer = None
+        self._comment = None
+        self._project = None
 
     # Abstractmethod
     @abstractmethod
@@ -43,34 +43,34 @@ class Article(ABC):
     # Getter
 
     def get_pk(self):
-        return self.__pk
+        return self._pk
 
     def get_title(self):
-        return self.__title
+        return self._title
 
     def get_writer(self):
-        return self.__writer
+        return self._writer
 
     def get_comment(self):
-        return self.__comment
+        return self._comment
 
     def get_project(self):
-        return self.__project
+        return self._project
 
     # Setter
 
     def set_pk(self, data):
-        self.__pk = data
+        self._pk = data
 
     def set_title(self, data):
-        self.__title = data
+        self._title = data
 
     def set_writer(self, data):
-        self.__writer = data
+        self._writer = data
 
     def set_comment(self, data):
-        self.__comment = data
+        self._comment = data
 
     def set_project(self, data):
-        self.__project = data
+        self._project = data
 

@@ -3,9 +3,9 @@ from abc import ABC, abstractmethod
 
 class Category(ABC):
     def __init__(self):
-        self.__name = None
-        self.__searchList = None
-        self.__articleCnt = None
+        self._name = None
+        self._searchList = None
+        self._articleCnt = None
 
     @abstractmethod
     def make(self):
@@ -30,23 +30,23 @@ class Category(ABC):
     # getter
 
     def get_name(self):
-        return self.__name
+        return self._name
 
     def get_search_list(self):
-        return self.__searchList
+        return self._searchList
 
     def get_article_cnt(self):
-        return self.__articleCnt
+        return self._articleCnt
 
     # setter
 
     def set_name(self, data):
-        self.__name = data
+        self._name = data
 
     def set_search_list(self, data):
-        self.__searchList = data
+        self._searchList = data
 
     def set_article_cnt(self, data):
-        self.__articleCnt = data
+        self._articleCnt = data
 
 

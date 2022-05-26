@@ -1,4 +1,4 @@
-from ABC import Project
+from .ABC import Project
 
 
 class PythonProject(Project):

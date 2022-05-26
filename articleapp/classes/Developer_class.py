@@ -1,4 +1,4 @@
-from ABC import User
+from .ABC import User
 
 
 class Developer(User):
