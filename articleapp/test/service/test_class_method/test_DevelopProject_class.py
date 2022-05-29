@@ -3,7 +3,7 @@ from django.test import TestCase
 from articleapp.classes import Developer, DevelopTeam
 from articleapp.classes.DevelopProject_class import DevelopProject
 from articleapp.classes.Exception_class import ProjectDataIsWrong, ProjectDataIsNotDict, TypeIsNotDeveloper, \
-    StackDuplicated, StackDoesNotExist
+    StackDuplicated, StackDoesNotExist, ToolDoesNotExist
 
 
 class TestDevelopProject(TestCase):
@@ -246,6 +246,17 @@ class TestDevelopProject(TestCase):
 
         # Then
         self.assertEqual(project.get_tool(), ['notion'])
+
+    # 이미 있는 tool를 추가하는 경우
+    def test_develop_project_append_when_tool_is_already_exist(self):
+        # Given
+        project = DevelopProject()
+        project.append_stack('notion')
+
+        # Then
+        with self.assertRaises(ToolDoesNotExist):
+            # When
+            project.append_stack('notion')
 
     """
     ------------------------------------------------------------------------------------------------------------------
