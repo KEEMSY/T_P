@@ -14,7 +14,7 @@ class Project(ABC):
         self._tool = None
 
     @abstractmethod
-    def make_project(self, title, leader, stack, due_date, desc, tool):
+    def make_project(self, data):
         pass
 
     @abstractmethod

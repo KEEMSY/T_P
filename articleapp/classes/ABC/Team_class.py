@@ -2,8 +2,8 @@ from abc import ABC, abstractmethod
 
 
 class Team(ABC):
-    def __int__(self):
-        self._teamList = None
+    def __init__(self):
+        self._developerList = None
         self._leader = None
         self._supporterList = None
 
@@ -33,7 +33,7 @@ class Team(ABC):
 
     # getter
     def get_team_list(self):
-        return self._teamList
+        return self._developerList
 
     def get_leader(self):
         return self._leader
@@ -43,12 +43,13 @@ class Team(ABC):
 
     # setter
     def set_team_list(self, data):
-        self._teamList = data
+        self._developerList = data
+        return True
 
     def set_leader(self, data):
         self._leader = data
 
-    def set_supporter(self, data):
+    def set_supporter_list(self, data):
         self._supporterList = data
 
 
