@@ -1,4 +1,5 @@
 from articleapp.classes.ABC import Project
+from userapp.models import SKILLS
 
 
 class DevelopProject(Project):

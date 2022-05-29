@@ -2,7 +2,8 @@ from django.test import TestCase
 
 from articleapp.classes import Developer, DevelopTeam
 from articleapp.classes.DevelopProject_class import DevelopProject
-from articleapp.classes.Exception_class import ProjectDataIsWrong, ProjectDataIsNotDict, TypeIsNotDeveloper
+from articleapp.classes.Exception_class import ProjectDataIsWrong, ProjectDataIsNotDict, TypeIsNotDeveloper, \
+    StackDuplicated, StackDoesNotExist
 
 
 class TestDevelopProject(TestCase):
@@ -91,7 +92,7 @@ class TestDevelopProject(TestCase):
             # When
             project.make_project(data)
 
-    # 프로젝트 만들기 - data가 dict type이 아닐 경우
+    # data가 dict type이 아닐 경우
     def test_develop_project_make_project_data_leader_is_not_dict(self):
         # Given
         data = ['test_leader', 'test_due_date', 'test_desc']
@@ -109,15 +110,13 @@ class TestDevelopProject(TestCase):
     ------------------------------------------------------------------------------------------------------------------
     """
 
-    # 프로젝트 업데이트 - 프로젝트 이름 변경
+    # 프로젝트 이름 변경
     def test_develop_project_update_title(self):
         # Given
         data = {
-            'leader': 'test_leader',
-            'stack': 'test_stack',
             'due_date': 'test_due_date',
             'desc': 'test_desc',
-            'tool': 'test_tool'
+            'title': 'test_title'
         }
 
         project = DevelopProject()
@@ -129,31 +128,79 @@ class TestDevelopProject(TestCase):
         # Then
         self.assertEqual(project.get_title(), 'update_title')
 
-    """
-    ------------------------------------------------------------------------------------------------------------------
-                                                    append_stack(data)
-    ------------------------------------------------------------------------------------------------------------------
-    """
-
-    # 프로젝트 스택 추가 - 동작 테스트
-    def test_develop_project_append_stack(self):
+    # 프로젝트 마감 날짜 변경
+    def test_develop_project_update_due_date(self):
         # Given
-        d1 = Developer()
-
         data = {
-            'title': 'test_title',
             'due_date': 'test_due_date',
             'desc': 'test_desc',
+            'title': 'test_title'
         }
 
         project = DevelopProject()
         project.make_project(data)
 
         # When
-        project.append_stack(data='stack1')
+        project.update_project(target='due_date', data='2020-01-01')
 
         # Then
-        self.assertEqual(project.get_stack(), ['stack1'])
+        self.assertEqual(project.get_due_date(), '2020-01-01')
+
+    # 프로젝트 설명 변경
+    def test_develop_project_update_desc(self):
+        # Given
+        data = {
+            'due_date': 'test_due_date',
+            'desc': 'test_desc',
+            'title': 'test_title'
+        }
+
+        project = DevelopProject()
+        project.make_project(data)
+
+        # When
+        project.update_project(target='desc', data='이번 프로젝트는 이겁니다!')
+
+        # Then
+        self.assertEqual(project.get_desc(), '이번 프로젝트는 이겁니다!')
+
+    """
+    ------------------------------------------------------------------------------------------------------------------
+                                                    append_stack(data)
+    ------------------------------------------------------------------------------------------------------------------
+    """
+
+    # 동작 테스트
+    def test_develop_project_append_stack(self):
+        # Given
+        project = DevelopProject()
+
+        # When
+        project.append_stack(data='python')
+
+        # Then
+        self.assertEqual(project.get_stack(), ['python'])
+
+    # 동일한 스택이 들어 가는 경우
+    def test_develop_project_append_stack_when_same_stack_appended(self):
+        # Given
+        project = DevelopProject()
+        project.append_stack(data='python')
+
+        # Then
+        with self.assertRaises(StackDuplicated):
+            # When
+            project.append_stack(data='python')
+
+    # 스택이 리스트 형식에 없을 때
+    def test_develop_project_append_stack_when_stack(self):
+        # Given
+        project = DevelopProject()
+
+        # Then
+        with self.assertRaises(StackDoesNotExist):
+            # When
+            project.append_stack(data='stack1')
 
     """
     ------------------------------------------------------------------------------------------------------------------
@@ -161,9 +208,68 @@ class TestDevelopProject(TestCase):
     ------------------------------------------------------------------------------------------------------------------
     """
 
-    # 프로젝트 스택 삭제 - 동작 확인
+    # 동작 확인
     def test_develop_project_delete_stack(self):
-        pass
+        # Given
+        project = DevelopProject()
+        project.append_stack('python')
+
+        # When
+        project.delete_stack('python')
+
+        # Then
+        self.assertEqual(project.get_stack(), [])
+
+    # 없는 스택을 삭제할 경우
+    def test_develop_project_delete_stack_when_stack_does_not_exist(self):
+        # Given
+        project = DevelopProject()
+
+        # Then
+        with self.assertRaises(StackDoesNotExist):
+            # When
+            project.delete_stack('python')
+
+    """
+    ------------------------------------------------------------------------------------------------------------------
+                                                    append_tool(data)
+    ------------------------------------------------------------------------------------------------------------------
+    """
+
+    # 동작 확인
+    def test_develop_project_append_tool(self):
+        # Given
+        project = DevelopProject()
+
+        # When
+        project.append_stack('notion')
+
+        # Then
+        self.assertEqual(project.get_tool(), ['notion'])
+
+    """
+    ------------------------------------------------------------------------------------------------------------------
+                                                    delete_tool(data)
+    ------------------------------------------------------------------------------------------------------------------
+    """
+
+    # 동작 확인
+    def test_develop_project_delete_tool(self):
+        # Given
+        project = DevelopProject()
+        project.append_tool('notion')
+
+        # When
+        project.delete_tool('notion')
+
+        # Then
+        self.assertEqual(project.get_tool(), [])
+
+    """
+    ------------------------------------------------------------------------------------------------------------------
+                                                register_team(data)
+    ------------------------------------------------------------------------------------------------------------------
+    """
 
     """
     ------------------------------------------------------------------------------------------------------------------
@@ -171,8 +277,7 @@ class TestDevelopProject(TestCase):
     ------------------------------------------------------------------------------------------------------------------
     """
 
-
-    # 프로젝트 업데이트 팀 - 프로젝트 리더 변경
+    # 프로 젝트 리더 변경
     def test_develop_project_update_leader(self):
         # Given
         d1 = Developer()
@@ -197,35 +302,24 @@ class TestDevelopProject(TestCase):
         # Then
         self.assertEqual(project.get_team().get_leader(), d2)
 
+    """
+    ------------------------------------------------------------------------------------------------------------------
+                                                    check()
+    ------------------------------------------------------------------------------------------------------------------
+    """
 
+    # 동작 확인
+    def test_develop_project_check(self):
+        pass
+
+    """
+    ------------------------------------------------------------------------------------------------------------------
+                                                    see_now()
+    ------------------------------------------------------------------------------------------------------------------
+    """
+
+    # 동작 확인
     def test_develop_project_see_now(self):
         pass
 
-    # 프로젝트 삭제 -
-    def test_develop_project_delete_project(self):
-        # Given
-        data = {
-            'title': 'test_title',
-            'due_date': 'test_due_date',
-            'desc': 'test_desc'
-        }
 
-        team = DevelopTeam()
-        d1 = Developer()
-        d2 = Developer()
-        team.make_team(d1)
-        team.make_team(d2)
-        team.set_leader(d1)
-
-        project = DevelopProject()
-        project.make_project(data)
-
-        project.append_stack('python')
-        project.append_tool('notion')
-
-        project.register_team(team)
-
-        # When
-        project.delete_project()
-
-        # Then

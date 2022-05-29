@@ -33,3 +33,13 @@ class ProjectDataIsWrong(Exception):
 class ProjectDataIsNotDict(Exception):
     def __init__(self):
         super().__init__('Dictionary 타입이 아닙니다.')
+
+
+class StackDuplicated(Exception):
+    def __init__(self):
+        super().__init__('기술 스택이 중복입니다.')
+
+
+class StackDoesNotExist(Exception):
+    def __init__(self):
+        super().__init__('기술 스택이 없습니다.')
