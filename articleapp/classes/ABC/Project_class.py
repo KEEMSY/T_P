@@ -5,7 +5,6 @@ from abc import ABC, abstractmethod
 
 class Project(ABC):
     def __init__(self):
-        self._leader = None
         self._team = None
         self._stack = None
         self._title = None
@@ -22,7 +21,7 @@ class Project(ABC):
         pass
 
     @abstractmethod
-    def update_project(self):
+    def update_project(self, target, data):
         pass
 
     @abstractmethod
@@ -30,9 +29,6 @@ class Project(ABC):
         pass
 
     # Getter 설정
-
-    def get_leader(self):
-        return self._leader
 
     def get_team(self):
         return self._team
@@ -53,9 +49,6 @@ class Project(ABC):
         return self._tool
 
     # Setter 설정
-
-    def set_leader(self, data):
-        self._leader = data
 
     def set_team(self, data):
         self._team = data
