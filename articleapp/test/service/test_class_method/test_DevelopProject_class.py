@@ -2,8 +2,9 @@ from django.test import TestCase
 
 from articleapp.classes import Developer, DevelopTeam
 from articleapp.classes.DevelopProject_class import DevelopProject
-from articleapp.classes.Exception_class import ProjectDataIsWrong, ProjectDataIsNotDict, TypeIsNotDeveloper, \
-    StackDuplicated, StackDoesNotExist, ToolDoesNotExist
+from articleapp.classes.Exception_class import ProjectDataIsWrong, \
+    ProjectDataIsNotDict, TypeIsNotDeveloper, StackDuplicated, StackDoesNotExist, ToolDoesNotExist, \
+    TypeIsNotDevelopTeam, TeamIsNotOkay
 
 
 class TestDevelopProject(TestCase):
@@ -276,11 +277,63 @@ class TestDevelopProject(TestCase):
         # Then
         self.assertEqual(project.get_tool(), [])
 
+    # 없는 tool를 삭제할 경우
+    def test_develop_project_delete_tool_when_tool_does_not_exist(self):
+        # Given
+        project = DevelopProject()
+
+        # Then
+        with self.assertRaises(ToolDoesNotExist):
+            # When
+            project.delete_tool('notion')
+
     """
     ------------------------------------------------------------------------------------------------------------------
                                                 register_team(data)
     ------------------------------------------------------------------------------------------------------------------
     """
+
+    # 동작 확인
+    def test_develop_project_register_team(self):
+        # Given
+        d1 = Developer()
+        d2 = Developer()
+        team = DevelopTeam()
+        team.make_team([d1, d2])
+
+        project = DevelopProject()
+
+        # When
+        project.register_team(team)
+
+        # Then
+        self.assertEqual(project.get_team(), team)
+
+    # data 가 DevelopTeam 이 아닌 경우
+    def test_develop_project_register_team_when_Type_is_not_DevelopTeam(self):
+        # Given
+        d1 = Developer()
+        project = DevelopProject()
+
+        # Then
+        with self.assertRaises(TypeIsNotDevelopTeam):
+            # When
+            project.register_team(d1)
+
+    # Team이 갖춰 지지 않은 경우
+    def test_develop_project_register_team_when_team_does_not_okay(self):
+        # Given
+        d1 = Developer()
+        d2 = Developer()
+        team = DevelopTeam()
+        team.make_team([d1, d2])
+        project = DevelopProject()
+
+        # Then
+        with self.assertRaises(TeamIsNotOkay):
+            # When
+            project.register_team(team)
+
 
     """
     ------------------------------------------------------------------------------------------------------------------
