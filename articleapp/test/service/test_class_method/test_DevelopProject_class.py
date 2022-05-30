@@ -315,6 +315,7 @@ class TestDevelopProject(TestCase):
         d2 = Developer()
         team = DevelopTeam()
         team.make_team([d1, d2])
+        team.register_leader(d1)
 
         project = DevelopProject()
 

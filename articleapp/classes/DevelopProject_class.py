@@ -101,7 +101,7 @@ class DevelopProject(Project):
     def register_team(self, data):
         if type(data) is not DevelopTeam:
             raise TypeIsNotDevelopTeam
-        if not data.check():
+        if data.check() is False:
             raise TeamIsNotOkay
         self.set_team(data)
 
