@@ -415,7 +415,29 @@ class TestDevelopProject(TestCase):
         # Then
         self.assertFalse(result)
 
+    # 제목이 없을 경우
+    def test_develop_project_check_when_title_is_None(self):
+        # Given
+        d1 = Developer()
+        d2 = Developer()
+        team = DevelopTeam()
+        team.make_team([d1, d2])
+        team.set_leader(d1)
 
+        data = {
+            'due_date': 'test_due_date',
+            'desc': 'test_desc',
+        }
+
+        project = DevelopProject()
+        project.make_project(data)
+        project.register_team(team)
+
+        # When
+        result = project.check()
+
+        # Then
+        self.assertFalse(result)
 
     """
     ------------------------------------------------------------------------------------------------------------------
