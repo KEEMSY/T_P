@@ -84,6 +84,7 @@ class DevelopProject(Project):
         stack.remove(data)
         self.set_stack(stack)
 
+
     def append_tool(self, data):
         pass
 
