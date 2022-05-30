@@ -440,6 +440,7 @@ class TestDevelopProject(TestCase):
         team.set_leader(d1)
 
         data = {
+            'title': None,
             'due_date': '9999-12-31',
             'desc': 'test_desc',
         }
@@ -466,10 +467,12 @@ class TestDevelopProject(TestCase):
         data = {
             'title': 'test_title',
             'desc': 'test_desc',
+            'due_date': '9999-12-31'
         }
 
         project = DevelopProject()
         project.make_project(data)
+        project.set_due_date(None)
         project.register_team(team)
 
         # When
@@ -488,6 +491,7 @@ class TestDevelopProject(TestCase):
         team.set_leader(d1)
 
         data = {
+            'desc': None,
             'title': 'test_title',
             'due_date':'9999-12-31',
         }

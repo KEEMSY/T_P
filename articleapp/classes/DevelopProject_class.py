@@ -27,7 +27,7 @@ class DevelopProject(Project):
             raise ProjectDataIsWrong
         # due_date 유효성 검사
         p = re.compile('[0-9]{4}-[0-9]{2}-[0-9]{2}')
-        if p.search(data['due_date']) is None:
+        if type(data['due_date']) is not str or p.search(data['due_date']) is None:
             raise ProjectDataIsWrong
 
         # 지난 날짜인지 확인
@@ -111,7 +111,16 @@ class DevelopProject(Project):
             team.set_leader(user)
 
     def check(self):
-        pass
+        if self.get_title() is None:
+            return False
+        elif self.get_team() is None:
+            return False
+        elif self.get_desc() is None:
+            return False
+        elif self.get_due_date() is None:
+            return False
+        else:
+            return True
 
     def see_now(self):
         pass
