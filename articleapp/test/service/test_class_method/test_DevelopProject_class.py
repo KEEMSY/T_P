@@ -84,7 +84,7 @@ class TestDevelopProject(TestCase):
         data = {
             'title': 'test_title',
             'desc': 'test_desc',
-            'due_date': '9999-12-31'
+            'due_date': '1111-12-31'
         }
         project = DevelopProject()
 
