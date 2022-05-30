@@ -35,7 +35,7 @@ class TestDevelopProject(TestCase):
         # Given
         data = {
             'title': 'test_title',
-            'due_date': 'test_due_date',
+            'due_date': '9999-12-31',
             'desc': 'test_desc',
         }
 
@@ -45,14 +45,14 @@ class TestDevelopProject(TestCase):
 
         # Then
         self.assertEqual(project.get_title(), 'test_title')
-        self.assertEqual(project.get_due_date(), 'test_due_date')
+        self.assertEqual(project.get_due_date(), '9999-12-31')
         self.assertEqual(project.get_desc(), 'test_desc')
 
     # title 이 없는 경우
     def test_develop_project_make_project_when_data_has_not_title(self):
         # Given
         data = {
-            'due_date': 'test_due_date',
+            'due_date': '9999-12-31',
             'desc': 'test_desc',
         }
 
@@ -84,7 +84,7 @@ class TestDevelopProject(TestCase):
         data = {
             'title': 'test_title',
             'desc': 'test_desc',
-            'due_date': '2000-01-02'
+            'due_date': '9999-12-31'
         }
         project = DevelopProject()
 
@@ -98,7 +98,7 @@ class TestDevelopProject(TestCase):
         # Given
         data = {
             'title': 'test_title',
-            'due_date': 'test_due_date',
+            'due_date': '9999-12-31',
         }
 
         project = DevelopProject()
@@ -130,7 +130,7 @@ class TestDevelopProject(TestCase):
     def test_develop_project_update_title(self):
         # Given
         data = {
-            'due_date': 'test_due_date',
+            'due_date': '9999-12-31',
             'desc': 'test_desc',
             'title': 'test_title'
         }
@@ -148,7 +148,7 @@ class TestDevelopProject(TestCase):
     def test_develop_project_update_due_date(self):
         # Given
         data = {
-            'due_date': 'test_due_date',
+            'due_date': '9999-12-31',
             'desc': 'test_desc',
             'title': 'test_title'
         }
@@ -166,7 +166,7 @@ class TestDevelopProject(TestCase):
     def test_develop_project_update_desc(self):
         # Given
         data = {
-            'due_date': 'test_due_date',
+            'due_date': '9999-12-31',
             'desc': 'test_desc',
             'title': 'test_title'
         }
@@ -367,7 +367,7 @@ class TestDevelopProject(TestCase):
 
         data = {
             'title': 'test_title',
-            'due_date': 'test_due_date',
+            'due_date': '9999-12-31',
             'desc': 'test_desc',
         }
 
@@ -398,7 +398,7 @@ class TestDevelopProject(TestCase):
 
         data = {
             'title': 'test_title',
-            'due_date': 'test_due_date',
+            'due_date': '9999-12-31',
             'desc': 'test_desc',
         }
 
@@ -417,7 +417,7 @@ class TestDevelopProject(TestCase):
         # Given
         data = {
             'title': 'test_title',
-            'due_date': 'test_due_date',
+            'due_date': '9999-12-31',
             'desc': 'test_desc',
         }
 
@@ -440,7 +440,7 @@ class TestDevelopProject(TestCase):
         team.set_leader(d1)
 
         data = {
-            'due_date': 'test_due_date',
+            'due_date': '9999-12-31',
             'desc': 'test_desc',
         }
 
@@ -489,7 +489,7 @@ class TestDevelopProject(TestCase):
 
         data = {
             'title': 'test_title',
-            'due_date': '9999-2-20',
+            'due_date':'9999-12-31',
         }
 
         project = DevelopProject()
