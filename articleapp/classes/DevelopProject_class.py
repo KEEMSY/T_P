@@ -77,7 +77,12 @@ class DevelopProject(Project):
             raise StackDuplicated
 
     def delete_stack(self, data):
-        pass
+        stack = self.get_stack()
+        if data not in stack:
+            raise StackDoesNotExist
+
+        stack.remove(data)
+        self.set_stack(stack)
 
     def append_tool(self, data):
         pass
