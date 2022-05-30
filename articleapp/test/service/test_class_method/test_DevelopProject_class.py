@@ -510,7 +510,39 @@ class TestDevelopProject(TestCase):
 
     # 동작 확인
     def test_develop_project_see_now(self):
+        # Given
+        d1 = Developer()
+        d2 = Developer()
+        d1.set_nickname('devel1')
+        d1.set_nickname('devel2')
+        team = DevelopTeam()
+        team.make_team([d1, d2])
+        team.set_leader(d1)
+        team.register_leader(d1)
 
-        pass
+        data = {
+            'desc' : 'test_desc',
+            'title': 'test_title',
+            'due_date': '9999-2-20',
+        }
 
+        project = DevelopProject()
+        project.make_project(data)
+        project.register_team(team)
+
+
+        # When
+        result = project.see_now()
+
+        # Then
+        expect = {
+            'desc': 'test_desc',
+            'title': 'test_title',
+            'due_date': '9999-2-20',
+            'team': ['devel1', 'devel1'],
+            'leader': ['devel1'],
+            'tool': [],
+            'stack': [],
+        }
+        self.assertDictEqual(expect, result)
 
