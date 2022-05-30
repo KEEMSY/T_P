@@ -106,7 +106,9 @@ class DevelopProject(Project):
         self.set_team(data)
 
     def update_team(self, target, user):
-        pass
+        team = self.get_team()
+        if target == 'leader':
+            team.set_leader(user)
 
     def check(self):
         pass
