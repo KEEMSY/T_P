@@ -123,7 +123,22 @@ class DevelopProject(Project):
             return True
 
     def see_now(self):
-        pass
+        team = self.get_team().get_team_list()
+        temp = []
+        for member in team:
+            temp.append(member.get_nickname())
+
+        data = {
+            'desc': self.get_desc(),
+            'title': self.get_title(),
+            'due_date': self.get_due_date(),
+            'team': temp,
+            'leader': self.get_team().get_leader().get_nickname(),
+            'tool': self.get_tool(),
+            'stack': self.get_stack(),
+        }
+
+        return data
 
     def delete_project(self):
         pass

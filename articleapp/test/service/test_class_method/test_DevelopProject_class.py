@@ -518,7 +518,7 @@ class TestDevelopProject(TestCase):
         d1 = Developer()
         d2 = Developer()
         d1.set_nickname('devel1')
-        d1.set_nickname('devel2')
+        d2.set_nickname('devel2')
         team = DevelopTeam()
         team.make_team([d1, d2])
         team.set_leader(d1)
@@ -527,7 +527,7 @@ class TestDevelopProject(TestCase):
         data = {
             'desc' : 'test_desc',
             'title': 'test_title',
-            'due_date': '9999-2-20',
+            'due_date': '9999-02-20',
         }
 
         project = DevelopProject()
@@ -542,9 +542,9 @@ class TestDevelopProject(TestCase):
         expect = {
             'desc': 'test_desc',
             'title': 'test_title',
-            'due_date': '9999-2-20',
-            'team': ['devel1', 'devel1'],
-            'leader': ['devel1'],
+            'due_date': '9999-02-20',
+            'team': ['devel1', 'devel2'],
+            'leader': 'devel1',
             'tool': [],
             'stack': [],
         }
