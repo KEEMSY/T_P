@@ -1,6 +1,7 @@
+from articleapp.classes.DevelopTeam_class import DevelopTeam
 from articleapp.classes.ABC import Project
 from articleapp.classes.Exception_class import ProjectDataIsNotDict, ProjectDataIsWrong, DateIsPasted, StackDuplicated, \
-    StackDoesNotExist, ToolDoesNotExist
+    StackDoesNotExist, ToolDoesNotExist, TypeIsNotDevelopTeam, TeamIsNotOkay
 from userapp.models import SKILLS
 from datetime import datetime
 from datetime import date
@@ -98,7 +99,11 @@ class DevelopProject(Project):
         tools.remove(data)
 
     def register_team(self, data):
-        pass
+        if type(data) is not DevelopTeam:
+            raise TypeIsNotDevelopTeam
+        if not data.check():
+            raise TeamIsNotOkay
+        self.set_team(data)
 
     def update_team(self, target, user):
         pass
