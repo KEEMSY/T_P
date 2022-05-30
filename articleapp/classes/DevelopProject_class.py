@@ -92,7 +92,10 @@ class DevelopProject(Project):
             raise ToolDoesNotExist
 
     def delete_tool(self, data):
-        pass
+        tools = self.get_tool()
+        if data not in tools:
+            raise ToolDoesNotExist
+        tools.remove(data)
 
     def register_team(self, data):
         pass
