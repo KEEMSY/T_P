@@ -1,6 +1,6 @@
 from articleapp.classes.ABC import Project
 from articleapp.classes.Exception_class import ProjectDataIsNotDict, ProjectDataIsWrong, DateIsPasted, StackDuplicated, \
-    StackDoesNotExist
+    StackDoesNotExist, ToolDoesNotExist
 from userapp.models import SKILLS
 from datetime import datetime
 from datetime import date
@@ -84,9 +84,12 @@ class DevelopProject(Project):
         stack.remove(data)
         self.set_stack(stack)
 
-
     def append_tool(self, data):
-        pass
+        tools = self.get_tool()
+        if data not in tools:
+            tools.append(data)
+        else:
+            raise ToolDoesNotExist
 
     def delete_tool(self, data):
         pass

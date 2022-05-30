@@ -258,7 +258,7 @@ class TestDevelopProject(TestCase):
         project = DevelopProject()
 
         # When
-        project.append_stack('notion')
+        project.append_tool('notion')
 
         # Then
         self.assertEqual(project.get_tool(), ['notion'])
@@ -267,12 +267,12 @@ class TestDevelopProject(TestCase):
     def test_develop_project_append_when_tool_is_already_exist(self):
         # Given
         project = DevelopProject()
-        project.append_stack('notion')
+        project.append_tool('notion')
 
         # Then
         with self.assertRaises(ToolDoesNotExist):
             # When
-            project.append_stack('notion')
+            project.append_tool('notion')
 
     """
     ------------------------------------------------------------------------------------------------------------------
