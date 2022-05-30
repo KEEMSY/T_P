@@ -28,7 +28,6 @@ class DevelopProject(Project):
         # 지난 날짜인지 확인
         today = datetime.today().date()
         date_list = data['due_date'].split('-')
-        print(date_list)
         due_date = date(int(date_list[0]), int(date_list[1]), int(date_list[2]))
 
         if today > due_date:
@@ -39,7 +38,27 @@ class DevelopProject(Project):
         self.set_due_date(data['due_date'])
 
     def update_project(self, target, data):
-        pass
+        if target == 'title':
+            self.set_title(data)
+        elif target == 'desc':
+            self.set_desc(data)
+        elif target == 'due_date':
+            # due_date 유효성 검사
+            p = re.compile('[0-9]{4}-[0-9]{2}-[0-9]{2}')
+            if p.search(data) is None:
+                raise ProjectDataIsWrong
+
+            # 지난 날짜인지 확인
+            today = datetime.today().date()
+            date_list = data.split('-')
+            due_date = date(int(date_list[0]), int(date_list[1]), int(date_list[2]))
+
+            if today > due_date:
+                raise DateIsPasted
+            self.set_due_date(data)
+        else:
+            return False
+        return True
 
     def append_stack(self, data):
         pass

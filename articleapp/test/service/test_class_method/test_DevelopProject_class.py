@@ -157,10 +157,10 @@ class TestDevelopProject(TestCase):
         project.make_project(data)
 
         # When
-        project.update_project(target='due_date', data='2020-01-01')
+        project.update_project(target='due_date', data='9999-12-31')
 
         # Then
-        self.assertEqual(project.get_due_date(), '2020-01-01')
+        self.assertEqual(project.get_due_date(), '9999-12-31')
 
     # 프로젝트 설명 변경
     def test_develop_project_update_desc(self):
