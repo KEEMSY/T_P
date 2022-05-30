@@ -208,7 +208,7 @@ class TestDevelopProject(TestCase):
             # When
             project.append_stack(data='python')
 
-    # 스택이 리스트 형식에 없을 때
+    # 스택이 정해진 리스트에 없을 때
     def test_develop_project_append_stack_when_stack(self):
         # Given
         project = DevelopProject()

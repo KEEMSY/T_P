@@ -1,5 +1,6 @@
 from articleapp.classes.ABC import Project
-from articleapp.classes.Exception_class import ProjectDataIsNotDict, ProjectDataIsWrong, DateIsPasted
+from articleapp.classes.Exception_class import ProjectDataIsNotDict, ProjectDataIsWrong, DateIsPasted, StackDuplicated, \
+    StackDoesNotExist
 from userapp.models import SKILLS
 from datetime import datetime
 from datetime import date
@@ -12,6 +13,9 @@ class DevelopProject(Project):
         super(DevelopProject, self).__init__()
         self.set_stack([])
         self.set_tool([])
+        self.skills = []
+        for skill in SKILLS:
+            self.skills.append(skill[1])
 
     def make_project(self, data):
         # dict 타입 검사
@@ -61,7 +65,16 @@ class DevelopProject(Project):
         return True
 
     def append_stack(self, data):
-        pass
+        # data 가 있는 skill 인가
+        if data not in self.skills:
+            raise StackDoesNotExist
+
+        stack = self.get_stack()
+        if data not in stack:
+            stack.append(data)
+        else:
+            # 중복된 skill 일 경우
+            raise StackDuplicated
 
     def delete_stack(self, data):
         pass
