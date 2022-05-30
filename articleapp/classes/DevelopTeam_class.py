@@ -79,5 +79,10 @@ class DevelopTeam(Team):
         else:
             raise MemberDoesNotExist
 
-
-
+    def check(self):
+        if len(self.get_team_list()) == 0:
+            return False
+        elif self.get_leader() is None:
+            return False
+        else:
+            return True
