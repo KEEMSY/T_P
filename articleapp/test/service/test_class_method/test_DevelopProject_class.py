@@ -4,7 +4,7 @@ from articleapp.classes import Developer, DevelopTeam
 from articleapp.classes.DevelopProject_class import DevelopProject
 from articleapp.classes.Exception_class import ProjectDataIsWrong, \
     ProjectDataIsNotDict, TypeIsNotDeveloper, StackDuplicated, StackDoesNotExist, ToolDoesNotExist, \
-    TypeIsNotDevelopTeam, TeamIsNotOkay
+    TypeIsNotDevelopTeam, TeamIsNotOkay, DateIsPasted
 
 
 class TestDevelopProject(TestCase):
@@ -75,6 +75,21 @@ class TestDevelopProject(TestCase):
 
         # Then
         with self.assertRaises(ProjectDataIsWrong):
+            # When
+            project.make_project(data)
+
+    # due_date 가 오늘 보다 이전일 경우
+    def test_develop_project_make_project_when_due_date_is_past(self):
+        # Given
+        data = {
+            'title': 'test_title',
+            'desc': 'test_desc',
+            'due_date': '2000-01-02'
+        }
+        project = DevelopProject()
+
+        # Then
+        with self.assertRaises(DateIsPasted):
             # When
             project.make_project(data)
 
