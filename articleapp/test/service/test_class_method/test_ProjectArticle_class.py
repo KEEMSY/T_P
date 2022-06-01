@@ -84,7 +84,51 @@ class TestProjectArticle(TestCase):
         self.assertEqual(article.get_project().get_desc(), project.get_desc())
         self.assertEqual(article.get_project().get_team().get_leader(), d1)
 
-    # 동작 확인
+    # data가 dict 타입이 아닌 경우
+    def test_project_article_make_article_when_data_is_not_dict(self):
+        # Given
+        d1 = Developer()
+        d2 = Developer()
+
+        data = {
+            'title': 'test_project',
+            'desc': 'test_desc',
+            'due_date': '9999-12-31',
+            'member': [d1, d2],
+            'supporter': [],
+            'stack': [],
+            'tool': [],
+            'skill': [],
+            'leader': d1,
+        }
+        article = ProjectArticle()
+
+        # Then
+        with self.assertRaises(TypeError):
+            # When
+            article.make(data)
+
+    # 만들기 실패 한다면 msg : fail
+    def test_project_article_make_article_when_make_fail(self):
+        # Given
+        d1 = Developer()
+        d2 = Developer()
+
+        data = {
+            'member': [d1, d2],
+            'supporter': [],
+            'stack': [],
+            'tool': [],
+            'skill': [],
+            'leader': d1,
+        }
+        article = ProjectArticle()
+
+        # When
+        result = article.make(data)
+
+        # Then
+        self.assertEqual(result['msg'], 'Fail')
 
 
     """
