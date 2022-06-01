@@ -24,7 +24,7 @@ class DevelopTeam(Team):
                 self.set_team_list([data])
                 return True
 
-    def append_member(self, data):
+    def append_developer(self, data):
         team_list = self.get_team_list()
         if data in team_list:
             raise AlreadyMemberExist

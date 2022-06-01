@@ -12,7 +12,7 @@ class Team(ABC):
         pass
 
     @abstractmethod
-    def append_member(self, data):
+    def append_developer(self, data):
         pass
 
     @abstractmethod

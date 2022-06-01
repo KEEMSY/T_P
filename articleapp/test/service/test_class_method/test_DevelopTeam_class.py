@@ -74,7 +74,7 @@ class TestDevelopTeamClass(TestCase):
         new_member = Developer()
 
         # When
-        result = team.append_member(new_member)
+        result = team.append_developer(new_member)
 
         # Then
         team_list.append(new_member)
@@ -93,7 +93,7 @@ class TestDevelopTeamClass(TestCase):
         # Then
         with self.assertRaises(AlreadyMemberExist):
             # When
-            team.append_member(m1)
+            team.append_developer(m1)
 
     # 개발팀 멤버 제거 - 리스트에서 멤버가 제대로 제거 되는가?
     def test_develop_team_delete_member(self):
