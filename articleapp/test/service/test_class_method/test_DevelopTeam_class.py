@@ -106,7 +106,7 @@ class TestDevelopTeamClass(TestCase):
         team.make_team([m1, m2, m3])
 
         # When
-        result = team.delete_member(m1)
+        result = team.delete_developer(m1)
 
         # Then
         team_list.remove(m1)
@@ -128,7 +128,7 @@ class TestDevelopTeamClass(TestCase):
 
         # Then
         with self.assertRaises(MemberDoesNotExist):
-            result = team.delete_member(m4)
+            result = team.delete_developer(m4)
 
     # 개발팀 리더 설정 - 리더 설정이 제대로 되는가?
     def test_develop_team_register_leader(self):

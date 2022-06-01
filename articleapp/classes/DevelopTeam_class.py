@@ -31,7 +31,7 @@ class DevelopTeam(Team):
         team_list.append(data)
         return True
 
-    def delete_member(self, data):
+    def delete_developer(self, data):
         team_list = self.get_team_list()
         if data not in team_list:
             raise MemberDoesNotExist

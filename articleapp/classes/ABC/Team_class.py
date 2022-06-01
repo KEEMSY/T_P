@@ -16,7 +16,7 @@ class Team(ABC):
         pass
 
     @abstractmethod
-    def delete_member(self, data):
+    def delete_developer(self, data):
         pass
 
     @abstractmethod
