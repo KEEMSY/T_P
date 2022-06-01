@@ -26,9 +26,8 @@ class DevelopTeam(Team):
 
     def append_member(self, data):
         team_list = self.get_team_list()
-        for user in team_list:
-            if user == data:
-                raise AlreadyMemberExist
+        if data in team_list:
+            raise AlreadyMemberExist
         team_list.append(data)
         return True
 
