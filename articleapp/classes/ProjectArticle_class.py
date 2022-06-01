@@ -8,10 +8,12 @@ class ProjectArticle(Article):
         self._like = 0
 
     def like(self):
-        pass
+        self._like += 1
 
     def unlike(self):
-        pass
+        self._like -= 1
+        if self._like < 0:
+            self._like = 1
 
     def update(self, target, data):
         pass
