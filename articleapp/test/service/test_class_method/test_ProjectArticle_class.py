@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from articleapp.classes import ProjectArticle
+from articleapp.classes import ProjectArticle, DevelopProject, DevelopTeam, Developer
 
 
 class TestProjectArticle(TestCase):
@@ -55,21 +55,34 @@ class TestProjectArticle(TestCase):
     # 동작 확인
     def test_project_article_make(self):
         # Given
+        d1 = Developer()
+        d2 = Developer()
+
         article = ProjectArticle()
         data = {
             'title': 'test_project',
             'desc': 'test_desc',
-            'due_date' : '9999-12-31',
-            'member' : [1, 2],
+            'due_date': '9999-12-31',
+            'member': [d1, d2],
             'supporter': [],
-
+            'stack': [],
+            'tool': [],
+            'skill': [],
+            'leader': d1,
         }
+
+        project = DevelopProject()
+        project.make_project(data)
+
+        team = DevelopTeam()
 
         # When
         article.make(data)
 
         # Then
-        self.assertEqual(article.get_title(), 'test_project')
+        self.assertEqual(article.get_project().get_title(), project.get_title())
+        self.assertEqual(article.get_project().get_desc(), project.get_desc())
+        self.assertEqual(article.get_project().get_team().get_leader(), d1)
 
     # 동작 확인
 
