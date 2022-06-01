@@ -5,6 +5,7 @@ from .ABC import Article
 class ProjectArticle(Article):
     def __init__(self):
         super(ProjectArticle, self).__init__()
+        self._like = 0
 
     def like(self):
         pass
@@ -12,7 +13,7 @@ class ProjectArticle(Article):
     def unlike(self):
         pass
 
-    def update(self, data):
+    def update(self, target, data):
         pass
 
     def delete(self):
@@ -24,7 +25,7 @@ class ProjectArticle(Article):
     def contact(self):
         pass
 
-    def make(self):
+    def make(self, data):
         pass
 
 
