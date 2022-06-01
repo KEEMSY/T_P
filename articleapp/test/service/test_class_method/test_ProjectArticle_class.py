@@ -128,8 +128,7 @@ class TestProjectArticle(TestCase):
         result = article.make(data)
 
         # Then
-        self.assertEqual(result['msg'], 'Fail')
-
+        self.assertFalse(result)
 
     """
     ------------------------------------------------------------------------------------------------------------------
