@@ -23,13 +23,13 @@ class DevelopTeam(Team):
             else:
                 self.set_team_list([data])
                 return True
-        pass
 
     def append_member(self, data):
         team_list = self.get_team_list()
         for user in team_list:
             if user == data:
                 raise AlreadyMemberExist
+        team_list.append(data)
         return True
 
     def delete_member(self, data):
@@ -69,7 +69,7 @@ class DevelopTeam(Team):
     def delete_supporter(self, data):
         if type(data) is list:
             for supporter in data:
-                self.delete_member(supporter)
+                self.delete_supporter(supporter)
         elif type(data) != Supporter:
             raise TypeIsNotSupporter
 
