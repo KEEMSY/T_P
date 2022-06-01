@@ -75,7 +75,7 @@ class TestProjectArticle(TestCase):
             'title': 'test_project',
             'desc': 'test_desc',
             'due_date': '9999-12-31',
-            'member': [d1, d2],
+            'developer': [d1, d2],
             'supporter': [],
             'stack': [],
             'tool': [],
@@ -102,17 +102,7 @@ class TestProjectArticle(TestCase):
         d1 = Developer()
         d2 = Developer()
 
-        data = {
-            'title': 'test_project',
-            'desc': 'test_desc',
-            'due_date': '9999-12-31',
-            'member': [d1, d2],
-            'supporter': [],
-            'stack': [],
-            'tool': [],
-            'skill': [],
-            'leader': d1,
-        }
+        data = ['hello']
         article = ProjectArticle()
 
         # Then
