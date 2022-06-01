@@ -10,6 +10,7 @@ class Article(ABC):
         self._writer = None
         self._comment = None
         self._project = None
+        self._like = None
 
     # Abstractmethod
     @abstractmethod
@@ -21,7 +22,7 @@ class Article(ABC):
         pass
 
     @abstractmethod
-    def update(self, data):
+    def update(self, target, data):
         pass
 
     @abstractmethod
@@ -37,7 +38,7 @@ class Article(ABC):
         pass
 
     @abstractmethod
-    def make(self):
+    def make(self, data):
         pass
 
     # Getter
@@ -57,20 +58,32 @@ class Article(ABC):
     def get_project(self):
         return self._project
 
+    def get_like(self):
+        return self._like
+
     # Setter
 
     def set_pk(self, data):
         self._pk = data
+        return True
 
     def set_title(self, data):
         self._title = data
+        return True
 
     def set_writer(self, data):
         self._writer = data
+        return True
 
     def set_comment(self, data):
         self._comment = data
+        return True
 
     def set_project(self, data):
         self._project = data
+        return True
+
+    def set_like(self, data):
+        self._like = data
+        return True
 
