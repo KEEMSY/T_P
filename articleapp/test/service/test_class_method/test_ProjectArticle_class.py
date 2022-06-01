@@ -47,6 +47,18 @@ class TestProjectArticle(TestCase):
         # Then
         self.assertEqual(article.get_like(), 0)
 
+    # 0 인 상태에서 unlike 할 경우
+    def test_project_article_unlike_when_like_is_zero(self):
+        # Given
+        article = ProjectArticle()
+
+        # When
+        article.unlike()
+        article.unlike()
+
+        # Then
+        self.assertEqual(article.get_like(), 0)
+
     """
     ------------------------------------------------------------------------------------------------------------------
                                                     make(data)
