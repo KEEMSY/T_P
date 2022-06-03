@@ -1,7 +1,7 @@
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Model
 from django.test.testcases import TestCase
-from articleapp.service.project_db_service import make_article, find_all_article,delete_article, put_article
+from articleapp.service.project_db_service import make_article, find_all_article,delete_article, put_article, find_article_one_by_pk
 from articleapp.models import DBProjectArticle, DBArticle
 from userapp.models import DBUser, DBDeveloper
 import random
@@ -25,7 +25,8 @@ class TestProjectDBService(TestCase):
     # Given
     # When
     # Then
-    def make_right_developer(self):
+    @staticmethod
+    def make_right_developer():
         email_list = ["zhqmfkv@naver.com", "aaa@naver.com", "ba@naver.com" ,"adfasdfdasf@naver.com"]
         password_list = ["423412", "23423432", "234234234"]
         nickname_list = ["423412", "23423432", "234234234"]
@@ -144,9 +145,7 @@ class TestProjectDBService(TestCase):
         # Then
         self.assertFalse(result)
 
-
     # find_all_article() 관련
-
     def test_find_all_article(self):
         # Given
         developer = self.make_right_developer()
@@ -218,4 +217,61 @@ class TestProjectDBService(TestCase):
         self.assertTrue(article_result)
         self.assertEqual(user_result, developer)
 
+    # Put_article Test
+    def test_put_article_right_update(self):
+        # Given
+        developer = self.make_right_developer()
+        data = self.projectArticleRightData
+        data['writer'] = developer
+        result = make_article(data=data)
+
+        update_data = self.projectArticleRightData
+
+        update_data['project_name'] = 'update_value'
+        update_data['writer'] = developer
+
+        # When
+        update_result = put_article(pk=1, data=update_data)
+
+        # Then
+        self.assertTrue(result)
+        self.assertTrue(update_result)
+        self.assertEqual('update_value', DBProjectArticle.objects.get(pk=1).project_name)
+
+    def test_put_article_data_type_is_dictionary(self):
+        # Given
+        developer = self.make_right_developer()
+        data = self.projectArticleRightData
+        data['writer'] = developer
+        result = make_article(data=data)
+
+        update_data = 'update_value'
+
+        # When Then
+        with self.assertRaises(TypeError):
+            update_result = put_article(pk=1, data=update_data)
+
+    # find_article_pk
+    def test_find_article_by_pk(self):
+        # Given
+        developer = self.make_right_developer()
+        data = self.projectArticleRightData
+        data['writer'] = developer
+        result = make_article(data=data)
+        real_article = DBProjectArticle.objects.get(pk=1)
+        # When
+        expect_result = find_article_one_by_pk(pk=1)
+
+        # Then
+        self.assertEqual(expect_result, real_article)
+        self.assertTrue(result)
+
+    def test_find_article_by_pk_has_no_pk(self):
+        # Given
+
+        # When
+        expect_result = find_article_one_by_pk(pk=9999)
+
+        # Then
+        self.assertIsNone(expect_result)
 
