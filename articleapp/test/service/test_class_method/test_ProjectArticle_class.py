@@ -1,7 +1,7 @@
 from django.test import TestCase
 
 from articleapp.classes import ProjectArticle, DevelopProject, DevelopTeam, Developer
-from articleapp.classes.Exception_class import TitleDoesNotExist, WriterDoesNotExist
+from articleapp.classes.Exception_class import TitleDoesNotExist, WriterDoesNotExist, TypeIsNotDeveloper
 
 
 class TestProjectArticle(TestCase):
@@ -254,29 +254,77 @@ class TestProjectArticle(TestCase):
                                                 update(target, data)
     ------------------------------------------------------------------------------------------------------------------
     """
-    def test_project_article_update(self):
+    # 작성자 변경
+    def test_project_article_update_writer_update(self):
         # Given
         d1 = Developer()
         d2 = Developer()
 
-        data = {
+        article_data = {
             'title': 'test_project',
-            'desc': 'test_desc',
-            'due_date': '9999-12-31',
-            'member': [d1, d2],
-            'supporter': [],
-            'stack': [],
-            'tool': [],
-            'skill': [],
-            'leader': 1,
+            'writer': d1
         }
         article = ProjectArticle()
-        result = article.make(data)
-
-        d3 = Developer()
+        article.make(article_data)
 
         # When
-        article.update()
+        article.update('writer', d2)
+
+        # Then
+        self.assertEqual(article.get_writer(), 'd2')
+
+    # 변경할 작성자가 Developer 타입이 아닐경우
+    def test_project_article_update_when_writer_is_not_developer_type(self):
+        # Given
+        d1 = Developer()
+        article_data = {
+            'title': 'test_project',
+            'writer': d1
+        }
+        article = ProjectArticle()
+        article.make(article_data)
+
+
+        # Then
+        with self.assertRaises(TypeIsNotDeveloper):
+            # When
+            article.update('writer', 'd2')
+
+    # 게시글 이름 변경
+    def test_project_article_update_title_update(self):
+        # Given
+        d1 = Developer()
+
+        article_data = {
+            'title': 'test_project',
+            'writer': d1
+        }
+        article = ProjectArticle()
+        article.make(article_data)
+
+        # When
+        article.update('title', 'update_title')
+
+        # Then
+        self.assertEqual(article.get_title(), 'update_title')
+
+    # 게시글이 String이 type 아닐 경우 -> TypeError
+    def test_project_article_update_when_updated_title_is_not_sting(self):
+        # Given
+        d1 = Developer()
+
+        article_data = {
+            'title': 'test_project',
+            'writer': d1
+        }
+        article = ProjectArticle()
+        article.make(article_data)
+
+        # Then
+        with self.assertRaises(TypeError):
+            # When
+            article.update('title', 1)
+
 
 
     """
