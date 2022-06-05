@@ -22,15 +22,19 @@ class ProjectArticle(Article):
         try:
             project = DevelopProject()
             project.make_project(data)
+
             team = DevelopTeam()
             team.make_team(data['developer'])
-            team.set_leader(data['leader'])
-            for supporter in data['supporter']:
-                team.append_supporter(supporter)
+            team.register_leader(data['leader'])
+            team.append_supporter(data['supporter'])
+            if team.check is False:
+                return False
+
             project.register_team(team)
             self.set_project(project)
-            return True
+
         except Exception as e:
+            print(e)
             return False
 
     def update(self, target, data):

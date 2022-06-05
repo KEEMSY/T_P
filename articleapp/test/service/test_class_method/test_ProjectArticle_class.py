@@ -110,8 +110,8 @@ class TestProjectArticle(TestCase):
             # When
             article.make(data)
 
-    # 만들기 실패 한다면 msg : fail
-    def test_project_article_make_article_when_make_fail(self):
+    # 만들기 실패 한다면 msg : project make fail
+    def test_project_article_make_article_when_make_project_fail(self):
         # Given
         d1 = Developer()
         d2 = Developer()
@@ -123,6 +123,28 @@ class TestProjectArticle(TestCase):
             'tool': [],
             'skill': [],
             'leader': d1,
+        }
+        article = ProjectArticle()
+
+        # When
+        result = article.make(data)
+
+        # Then
+        self.assertFalse(result)
+
+    # 만들기 실패 한다면 msg : Team make fail
+    def test_project_article_make_article_when_make_team_fail(self):
+        # Given
+        data = {
+            'title': 'test_project',
+            'desc': 'test_desc',
+            'due_date': '9999-12-31',
+            'member': [1, 2],
+            'supporter': [],
+            'stack': [],
+            'tool': [],
+            'skill': [],
+            'leader': 1,
         }
         article = ProjectArticle()
 
