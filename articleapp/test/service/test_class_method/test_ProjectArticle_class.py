@@ -65,7 +65,7 @@ class TestProjectArticle(TestCase):
     ------------------------------------------------------------------------------------------------------------------
     """
     # 동작 확인
-    def test_project_article_make(self):
+    def test_project_article_register_project(self):
         # Given
         d1 = Developer()
         d2 = Developer()
@@ -98,21 +98,21 @@ class TestProjectArticle(TestCase):
         self.assertEqual(article.get_project().get_team().get_leader(), d1)
 
     # data가 dict 타입이 아닌 경우
-    def test_project_article_make_article_when_data_is_not_dict(self):
+    def test_project_article_register_project_when_data_is_not_dict(self):
         # Given
         d1 = Developer()
         d2 = Developer()
 
         data = ['hello']
-        article = register_project()
+        article = ProjectArticle()
 
         # Then
         with self.assertRaises(TypeError):
             # When
-            article.make(data)
+            article.register_project(data)
 
     # 만들기 실패 한다면 msg : project make fail
-    def test_project_article_make_article_when_make_project_fail(self):
+    def test_project_article_register_project_when_make_project_fail(self):
         # Given
         d1 = Developer()
         d2 = Developer()
@@ -134,7 +134,7 @@ class TestProjectArticle(TestCase):
         self.assertFalse(result)
 
     # 만들기 실패 한다면 msg : Team make fail
-    def test_project_article_make_article_when_make_team_fail(self):
+    def test_project_article_register_project_when_make_team_fail(self):
         # Given
         data = {
             'title': 'test_project',
@@ -150,10 +150,33 @@ class TestProjectArticle(TestCase):
         article = ProjectArticle()
 
         # When
-        result = article.make(data)
+        result = article.register_project(data)
 
         # Then
         self.assertFalse(result)
+
+    """
+    ------------------------------------------------------------------------------------------------------------------
+                                                    make(data)
+    ------------------------------------------------------------------------------------------------------------------
+    """
+    # 동작 확인
+    def test_project_article_make(self):
+        # Given
+        d1 = Developer()
+        article_data = {
+            'title': 'test_title',
+            'writer': d1,
+        }
+
+        # When
+        article = ProjectArticle()
+        article.make(article_data)
+
+        # Then
+        self.assertEqual(article.get_title(), 'test_title')
+        self.assertEqual(article.get_writer(), d1)
+
 
     """
     ------------------------------------------------------------------------------------------------------------------
