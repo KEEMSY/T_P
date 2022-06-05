@@ -21,9 +21,13 @@ class TestDevelopTeamClass(TestCase):
     def test_develop_make_team_given_list(self):
         # Given
         m1 = Developer()
+        m1.set_pk(1)
         m2 = Developer()
+        m2.set_pk(2)
         m3 = Developer()
-        team_list = [m1, m2, m3]
+        m3.set_pk(3)
+
+        team_list = [1, 2, 3]
 
         # When
         team = DevelopTeam()
@@ -43,6 +47,8 @@ class TestDevelopTeamClass(TestCase):
 
         # Then
         self.assertEqual([m1], team.get_team_list())
+
+
 
     # 다른 클래스가 들어온다면??
     def test_develop_make_team_when_other_type_come(self):
