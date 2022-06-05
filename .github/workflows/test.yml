@@ -1,4 +1,4 @@
-name: TEAM3 CI
+name: Term Project Test
 
 on:
   push:
