@@ -8,7 +8,8 @@ class TestProjectArticle(TestCase):
     """
     * like():
     * unlike():
-    * make():
+    * make(data):
+    * register_project(data)
     * update(target, data):
     * delete():
     * report():
