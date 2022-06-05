@@ -325,8 +325,6 @@ class TestProjectArticle(TestCase):
             # When
             article.update('title', 1)
 
-
-
     """
     ------------------------------------------------------------------------------------------------------------------
                                                 delete(data: Dict)
