@@ -62,7 +62,12 @@ class ProjectArticle(Article):
             self.set_writer(data)
 
     def delete(self):
-        pass
+        self.set_project(None)
+        self.set_writer(None)
+        self.set_title(None)
+        self.set_like(None)
+        self.set_pk(None)
+        self.set_comment(None)
 
     def report(self):
         pass
