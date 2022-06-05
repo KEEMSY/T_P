@@ -330,6 +330,27 @@ class TestProjectArticle(TestCase):
                                                 delete(data: Dict)
     ------------------------------------------------------------------------------------------------------------------
     """
+    # 동작확인
+    def test_project_article_delete(self):
+        # Given
+        d1 = Developer()
+
+        data = {
+            'title': 'test_title',
+            'writer': d1
+        }
+        article = ProjectArticle()
+        # When
+        article.delete()
+
+        # Then
+        self.assertIsNone(article.get_project())
+        self.assertIsNone(article.get_title())
+        self.assertIsNone(article.get_writer())
+        self.assertIsNone(article.get_pk())
+        self.assertIsNone(article.get_comment())
+        self.assertIsNone(article.get_like())
+
     """
     ------------------------------------------------------------------------------------------------------------------
                                                 report(data: Dict)
