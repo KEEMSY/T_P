@@ -271,7 +271,7 @@ class TestProjectArticle(TestCase):
         article.update('writer', d2)
 
         # Then
-        self.assertEqual(article.get_writer(), 'd2')
+        self.assertEqual(article.get_writer(), d2)
 
     # 변경할 작성자가 Developer 타입이 아닐경우
     def test_project_article_update_when_writer_is_not_developer_type(self):

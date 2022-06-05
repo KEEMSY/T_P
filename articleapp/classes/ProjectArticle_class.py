@@ -1,9 +1,9 @@
-from . import DevelopProject, DevelopTeam
+from . import DevelopProject, DevelopTeam, Developer
 from .ABC import Article
 
 
 # ProjectArticle
-from .Exception_class import TitleDoesNotExist, WriterDoesNotExist
+from .Exception_class import TitleDoesNotExist, WriterDoesNotExist, TypeIsNotDeveloper
 
 
 class ProjectArticle(Article):
@@ -52,7 +52,14 @@ class ProjectArticle(Article):
         self.set_writer(data['writer'])
 
     def update(self, target, data):
-        pass
+        if target == 'title':
+            if type(data) is not str:
+                raise TypeError
+            self.set_title(data)
+        elif target == 'writer':
+            if type(data) is not Developer:
+                raise TypeIsNotDeveloper
+            self.set_writer(data)
 
     def delete(self):
         pass
