@@ -1,6 +1,7 @@
 from django.test import TestCase
 
 from articleapp.classes import ProjectArticle, DevelopProject, DevelopTeam, Developer
+from articleapp.classes.Exception_class import TitleDoesNotExist, WriterDoesNotExist
 
 
 class TestProjectArticle(TestCase):
@@ -177,6 +178,76 @@ class TestProjectArticle(TestCase):
         self.assertEqual(article.get_title(), 'test_title')
         self.assertEqual(article.get_writer(), d1)
 
+    # dict 타입이 아닐 경우 -> TypeError
+    def test_project_article_make_when_data_is_not_dict(self):
+        # Given
+        article_data = ['test_title', 'writer']
+
+        # Then
+        with self.assertRaises(TypeError):
+            # When
+            article = ProjectArticle()
+            article.make(article_data)
+
+    # title 이 없는 경우 -> False
+    def test_project_article_make_when_title_is_none_or_empty(self):
+        # Given
+        d1 = Developer()
+        article_data = {
+            'title' : '',
+            'writer': d1,
+        }
+
+        # When
+        article = ProjectArticle()
+        result = article.make(article_data)
+
+        # Then
+        self.assertFalse(result)
+
+    # writer 가 없는 경우 -> False
+    def test_project_article_make_when_writer_is_None(self):
+        # Given
+        article_data = {
+            'title': 'test_title',
+            'writer': None
+        }
+
+        # When
+        article = ProjectArticle()
+        result = article.make(article_data)
+
+        # Then
+        self.assertFalse(result)
+
+    # title key 값이 없는 경우 -> False
+    def test_project_article_make_when_title_key_is_None(self):
+        # Given
+        d1 = Developer()
+        article_data = {
+            'example1' : 'ex1',
+            'writer' : d1
+        }
+
+        # Then
+        with self.assertRaises(TitleDoesNotExist):
+            # When
+            article = ProjectArticle()
+            article.make(article_data)
+
+    # writer key 값이 없는 경우 -> False
+    def test_project_article_make_when_writer_key_is_None(self):
+        # Given
+        article_data = {
+            'title': 'ex1',
+            'example': 'ex2'
+        }
+
+        # Then
+        with self.assertRaises(WriterDoesNotExist):
+            # When
+            article = ProjectArticle()
+            article.make(article_data)
 
     """
     ------------------------------------------------------------------------------------------------------------------

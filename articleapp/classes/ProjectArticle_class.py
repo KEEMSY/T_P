@@ -37,7 +37,9 @@ class ProjectArticle(Article):
             print(e)
             return False
 
-    def make(self,data):
+    def make(self, data):
+
+
         pass
 
     def update(self, target, data):
