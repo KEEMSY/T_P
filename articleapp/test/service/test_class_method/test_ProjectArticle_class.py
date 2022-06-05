@@ -61,7 +61,7 @@ class TestProjectArticle(TestCase):
 
     """
     ------------------------------------------------------------------------------------------------------------------
-                                                    make(data)
+                                            register_project(data)
     ------------------------------------------------------------------------------------------------------------------
     """
     # 동작 확인
@@ -81,6 +81,7 @@ class TestProjectArticle(TestCase):
             'tool': [],
             'skill': [],
             'leader': d1,
+
         }
 
         project = DevelopProject()
@@ -89,7 +90,7 @@ class TestProjectArticle(TestCase):
         team = DevelopTeam()
 
         # When
-        article.make(data)
+        article.register_project(data)
 
         # Then
         self.assertEqual(article.get_project().get_title(), project.get_title())
@@ -103,7 +104,7 @@ class TestProjectArticle(TestCase):
         d2 = Developer()
 
         data = ['hello']
-        article = ProjectArticle()
+        article = register_project()
 
         # Then
         with self.assertRaises(TypeError):
@@ -127,7 +128,7 @@ class TestProjectArticle(TestCase):
         article = ProjectArticle()
 
         # When
-        result = article.make(data)
+        result = article.register_project(data)
 
         # Then
         self.assertFalse(result)
@@ -161,7 +162,27 @@ class TestProjectArticle(TestCase):
     """
     def test_project_article_update(self):
         # Given
+        d1 = Developer()
+        d2 = Developer()
+
+        data = {
+            'title': 'test_project',
+            'desc': 'test_desc',
+            'due_date': '9999-12-31',
+            'member': [d1, d2],
+            'supporter': [],
+            'stack': [],
+            'tool': [],
+            'skill': [],
+            'leader': 1,
+        }
         article = ProjectArticle()
+        result = article.make(data)
+
+        d3 = Developer()
+
+        # When
+        article.update()
 
 
     """

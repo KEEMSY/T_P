@@ -16,7 +16,7 @@ class ProjectArticle(Article):
         if self._like < 0:
             self._like = 1
 
-    def make(self, data):
+    def register_project(self, data):
         if type(data) is not dict:
             raise TypeError
         try:
@@ -36,6 +36,9 @@ class ProjectArticle(Article):
         except Exception as e:
             print(e)
             return False
+
+    def make(self,data):
+        pass
 
     def update(self, target, data):
         pass
