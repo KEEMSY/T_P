@@ -32,7 +32,7 @@ class Team(ABC):
         pass
 
     # getter
-    def get_team_list(self):
+    def get_developer_list(self):
         return self._developerList
 
     def get_leader(self):

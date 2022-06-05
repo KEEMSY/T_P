@@ -30,7 +30,7 @@ class TestDevelopTeamClass(TestCase):
         team.make_team(team_list)
 
         # Then
-        self.assertEqual(team_list, team.get_team_list())
+        self.assertEqual(team_list, team.get_developer_list())
 
     # 단일 유저로 주어질 때
     def test_develop_make_team_given_string(self):
@@ -42,7 +42,7 @@ class TestDevelopTeamClass(TestCase):
         team.make_team(m1)
 
         # Then
-        self.assertEqual([m1], team.get_team_list())
+        self.assertEqual([m1], team.get_developer_list())
 
 
     # 다른 클래스가 들어온다면??
@@ -95,7 +95,7 @@ class TestDevelopTeamClass(TestCase):
         # Then
         team_list.append(new_member)
         self.assertTrue(result)
-        self.assertEqual(team_list, team.get_team_list())
+        self.assertEqual(team_list, team.get_developer_list())
 
     # 이미 있는 유저가 추가 된다면?
     def test_develop_team_append_member_when_already_member_exist(self):
@@ -133,7 +133,7 @@ class TestDevelopTeamClass(TestCase):
         # Then
         team_list.remove(m1)
         self.assertTrue(result)
-        self.assertEqual(team_list, team.get_team_list())
+        self.assertEqual(team_list, team.get_developer_list())
 
     # 팀 리스트에서 없는 멤버를 제거할 경우
     def test_develop_team_delete_member_when_member_does_not_exist(self):

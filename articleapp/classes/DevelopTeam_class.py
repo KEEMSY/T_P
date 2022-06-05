@@ -25,14 +25,14 @@ class DevelopTeam(Team):
                 return True
 
     def append_developer(self, data):
-        team_list = self.get_team_list()
+        team_list = self.get_developer_list()
         if data in team_list:
             raise AlreadyMemberExist
         team_list.append(data)
         return True
 
     def delete_developer(self, data):
-        team_list = self.get_team_list()
+        team_list = self.get_developer_list()
         if data not in team_list:
             raise MemberDoesNotExist
         else:
@@ -43,7 +43,7 @@ class DevelopTeam(Team):
     def register_leader(self, data):
         if type(data) != Developer:
             raise TypeIsNotDeveloper
-        team_list = self.get_team_list()
+        team_list = self.get_developer_list()
         if data not in team_list:
             raise MemberDoesNotExist
         self.set_leader(data)
@@ -79,7 +79,7 @@ class DevelopTeam(Team):
             raise MemberDoesNotExist
 
     def check(self):
-        if len(self.get_team_list()) == 0:
+        if len(self.get_developer_list()) == 0:
             return False
         elif self.get_leader() is None:
             return False
