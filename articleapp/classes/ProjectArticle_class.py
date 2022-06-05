@@ -3,6 +3,9 @@ from .ABC import Article
 
 
 # ProjectArticle
+from .Exception_class import TitleDoesNotExist, WriterDoesNotExist
+
+
 class ProjectArticle(Article):
     def __init__(self):
         super(ProjectArticle, self).__init__()
@@ -38,9 +41,15 @@ class ProjectArticle(Article):
             return False
 
     def make(self, data):
+        if type(data) is not dict:
+            raise TypeError
+        if 'title' not in data:
+            raise TitleDoesNotExist
+        if 'writer' not in data:
+            raise WriterDoesNotExist
 
-
-        pass
+        self.set_title(data['title'])
+        self.set_writer(data['writer'])
 
     def update(self, target, data):
         pass
