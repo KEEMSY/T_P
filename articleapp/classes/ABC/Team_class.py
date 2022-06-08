@@ -12,11 +12,11 @@ class Team(ABC):
         pass
 
     @abstractmethod
-    def append_member(self, data):
+    def append_developer(self, data):
         pass
 
     @abstractmethod
-    def delete_member(self, data):
+    def delete_developer(self, data):
         pass
 
     @abstractmethod
@@ -32,7 +32,7 @@ class Team(ABC):
         pass
 
     # getter
-    def get_team_list(self):
+    def get_developer_list(self):
         return self._developerList
 
     def get_leader(self):

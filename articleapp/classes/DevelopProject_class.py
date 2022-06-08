@@ -123,7 +123,7 @@ class DevelopProject(Project):
             return True
 
     def see_now(self):
-        team = self.get_team().get_team_list()
+        team = self.get_team().get_developer_list()
         temp = []
         for member in team:
             temp.append(member.get_nickname())

@@ -8,6 +8,7 @@ class User(ABC):
         self._img = None
         self._bio = None
         self._password = None
+        self._pk = None
 
     @abstractmethod
     def change_info(self, data):
@@ -34,6 +35,9 @@ class User(ABC):
     def get_password(self):
         return self._password
 
+    def get_pk(self):
+        return self._pk
+
     # setter
 
     def set_nickname(self, data):
@@ -50,4 +54,7 @@ class User(ABC):
 
     def set_password(self, data):
         self._password = data
+
+    def set_pk(self, data):
+        self._pk = data
 

@@ -61,6 +61,15 @@ class ToolDoesNotExist(Exception):
         super().__init__('기술 스택이 없습니다.')
 
 
+class TitleDoesNotExist(Exception):
+    def __init__(self):
+        super().__init__('Title Key가 없습니다.')
+
+
+class WriterDoesNotExist(Exception):
+    def __init__(self):
+        super().__init__('Writer Key가 없습니다.')
+
 """
 ------------------------------------------------------------------------------------------------------------------
                                            # AlreadyExist
