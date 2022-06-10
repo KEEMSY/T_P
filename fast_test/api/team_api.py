@@ -9,7 +9,7 @@ from fast_test.models import TeamModel
 class TeamView(APIView):
     permission_classes = [permissions.AllowAny]
 
-    def get(self, request, format=None):
+    def get(self, request):
         team_list = TeamModel.objects.all()
         serializer = TeamModelSerializer(team_list, many=True)
         return JsonResponse(serializer.data,  safe=False)
