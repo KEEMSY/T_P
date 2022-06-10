@@ -1,5 +1,5 @@
 """
-WSGI config for temp_project service.
+WSGI config for temp_project test_service.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
