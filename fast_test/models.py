@@ -5,9 +5,10 @@ from articleapp.models import DBArticle
 
 # Create your models here.
 class TeamModel(models.Model):
-    developer = models.ManyToManyField(DBDeveloper, related_name='developer')
-    supporter = models.ManyToManyField(DBSupporter, related_name='supporter')
-    leader = models.ForeignKey(DBDeveloper, on_delete=models.CASCADE, related_name='leader')
+    name = models.CharField(max_length=100, default=f'NewTeam')
+    developer = models.ManyToManyField(DBDeveloper, related_name='developer', null=True)
+    supporter = models.ManyToManyField(DBSupporter, related_name='supporter', null=True)
+    leader = models.ForeignKey(DBDeveloper, on_delete=models.CASCADE, related_name='leader', null=True)
     create_at = models.TimeField(auto_created=True)
     update_at = models.TimeField(auto_now=True)
 

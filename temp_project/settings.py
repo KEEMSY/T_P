@@ -147,3 +147,19 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(
     BASE_DIR, 'media'
 )
+
+# Rest Framework 설정
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    # 권한 설정
+    # 'DEFAULT_PERMISSION_CLASSES': [
+    #     'rest_framework.permissions.IsAuthenticated'
+    # ],
+    # Pagination
+    'DEFAULT_PAGINATION_CLASS': [
+        'rest_framework.permissions.AllowAny'
+    ],
+    'PAGE_SIZE': 10
+}
+
