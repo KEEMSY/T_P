@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     'userapp',
     'articleapp',
     'rest_framework',
-    'fast_article',
+    'fast_test',
 ]
 
 MIDDLEWARE = [
