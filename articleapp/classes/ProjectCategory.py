@@ -22,4 +22,3 @@ class ProjectCategory(Category):
     def pagination(self):
         pass
 
-
