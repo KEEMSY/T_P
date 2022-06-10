@@ -6,11 +6,11 @@ from articleapp.models import DBArticle
 # Create your models here.
 class TeamModel(models.Model):
     name = models.CharField(max_length=100, default=f'NewTeam')
-    developer = models.ManyToManyField(DBDeveloper, related_name='developer', null=True)
-    supporter = models.ManyToManyField(DBSupporter, related_name='supporter', null=True)
+    developer = models.ManyToManyField(DBDeveloper, related_name='developer', blank=True)
+    supporter = models.ManyToManyField(DBSupporter, related_name='supporter',  blank=True)
     leader = models.ForeignKey(DBDeveloper, on_delete=models.CASCADE, related_name='leader', null=True)
-    create_at = models.TimeField(auto_created=True)
-    update_at = models.TimeField(auto_now=True)
+    create_at = models.DateTimeField(auto_now=True)
+    update_at = models.DateField(auto_now_add=True)
 
 
 class Stack(models.Model):
@@ -19,7 +19,7 @@ class Stack(models.Model):
 
 
 class ProjectModel(models.Model):
-    article = models.ManyToManyField(DBArticle)
+    article = models.ManyToManyField(DBArticle, blank=True)
     team = models.ForeignKey(TeamModel, on_delete=models.CASCADE)
     stack = models.ManyToManyField(Stack)
     title = models.CharField(max_length=100)
@@ -44,6 +44,6 @@ class Comment(models.Model):
 
 
 class CategoryModel(models.Model):
-    article = models.ManyToManyField(ArticleModel)
-    subject = models.CharField(max_length=100)
+    article = models.ManyToManyField(ArticleModel, blank=True)
+    subject = models.CharField(max_length=100, default='')
 

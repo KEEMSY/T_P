@@ -5,7 +5,7 @@ from .models import TeamModel, ProjectModel, ArticleModel, Stack, CategoryModel,
 class TeamModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = TeamModel
-        fields = ['developer', 'supporter', 'leader']
+        fields = ['developer', 'leader', 'supporter', 'name']
 
 
 class StackSerializer(serializers.ModelSerializer):

@@ -10,7 +10,6 @@ class TeamView(APIView):
     permission_classes = [permissions.AllowAny]
 
     def get(self, request, format=None):
-        print('hello')
         team_list = TeamModel.objects.all()
         serializer = TeamModelSerializer(team_list, many=True)
         return JsonResponse(serializer.data,  safe=False)
@@ -23,8 +22,14 @@ class TeamView(APIView):
         serializer = TeamModelSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-
             return JsonResponse(data, status=201)
         data['result'] = 'fail'
+        data['detail'] = serializer.errors
         return JsonResponse(data, status=400)
 
+
+class TeamDetailView(APIView):
+    permission_classes = [permissions.AllowAny]
+
+    def get(self, request):
+        pass
